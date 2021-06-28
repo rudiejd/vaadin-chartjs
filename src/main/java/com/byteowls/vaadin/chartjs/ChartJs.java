@@ -1,22 +1,32 @@
 package com.byteowls.vaadin.chartjs;
 
 import com.byteowls.vaadin.chartjs.config.ChartConfig;
-import com.vaadin.annotations.JavaScript;
-import com.vaadin.annotations.StyleSheet;
-import com.vaadin.icons.VaadinIcons;
-import com.vaadin.ui.AbstractJavaScriptComponent;
-import com.vaadin.ui.JavaScriptFunction;
+import com.vaadin.flow.component.AttachEvent;
+import com.vaadin.flow.component.ClientCallable;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.function.SerializableConsumer;
+
 import elemental.json.JsonArray;
+import elemental.json.JsonValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@JavaScript({"vaadin://chartjs/Moment.js", "vaadin://chartjs/Chart.min.js", "vaadin://chartjs/hammer.min.js", "vaadin://chartjs/chartjs-plugin-zoom.min.js",
-    "vaadin://chartjs/chartjs-plugin-annotation.min.js", "vaadin://chartjs/chartjs-connector.js"})
+
+@JavaScript("Moment.js")
+@JavaScript("Chart.min.js") 
+@JavaScript("hammer.min.js") 
+@JavaScript("chartjs-plugin-zoom.min.js")
+@JavaScript("chartjs-plugin-annotation.min.js") 
+@JavaScript("chartjs-connector.js")
 @StyleSheet("vaadin://chartjs/chartjs-connector.css")
-public class ChartJs extends AbstractJavaScriptComponent {
+@Tag("div")
+public class ChartJs extends Component {
 
     private static final long serialVersionUID = 2999562112373836140L;
     /**
@@ -51,8 +61,9 @@ public class ChartJs extends AbstractJavaScriptComponent {
      * Construct a ChartJs. Be aware that you have to set a {@link ChartConfig} as well. Use {@link #configure(ChartConfig)} to do so.
      */
     public ChartJs() {
-        addStyleName("v-chartjs");
-        addJsFunctions();
+        getElement().getClassList().add("v-chartjs");
+        getElement().getClassList().add("-v-chartjs");
+        getElement().getClassList().add("v-widget");
     }
 
     /**
@@ -62,6 +73,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
     public ChartJs(ChartConfig chartConfig) {
         this();
         configure(chartConfig);
+		getElement().setText("poop");
     }
 
     /**
@@ -75,12 +87,23 @@ public class ChartJs extends AbstractJavaScriptComponent {
     }
 
     @Override
-    public void attach() {
+    protected void onAttach(AttachEvent e) {
         if (chartConfig != null) {
-            getState().configurationJson = chartConfig.buildJson();
+            getElement().setPropertyJson("chartConfig", (JsonValue)chartConfig.buildJson());
         }
-        super.attach();
+        initConnector();
+        super.onAttach(e);
     }
+
+    private void initConnector() {
+        runBeforeClientResponse(ui -> 
+            ui.getPage().executeJs("window.com_byteowls_vaadin_chartjs_ChartJs($0)", getElement()));
+    }
+
+    void runBeforeClientResponse(SerializableConsumer<UI> command) {
+        getElement().getNode().runWhenAttached(ui -> ui
+                .beforeClientResponse(this, context -> command.accept(ui)));
+    } 
 
     /**
      * @return Chart configuration. Useful for update the data after chart drawing
@@ -94,7 +117,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      */
     public void update() {
         if (chartConfig != null) {
-            getState().configurationJson = chartConfig.buildJson();
+            getElement().setPropertyJson("chartConfig", (JsonValue)chartConfig.buildJson());
         }
     }
 
@@ -102,7 +125,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      * Destroy the chart. This will call chartjs.destroy();
      */
     public void destroy() {
-        callFunction("destroyChart");
+        getElement().executeJs("destroy()");
     }
 
     /**
@@ -119,7 +142,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      * @return True if the connector's logs defined messages to "console.log" else logging is disabled.
      */
     public boolean isJsLoggingEnabled() {
-        return getState().loggingEnabled;
+        return getElement().getProperty("loggingEnabled").equals("true");
     }
 
     /**
@@ -127,7 +150,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      * @param jsLoggingEnabled If true the connector script will log defined messages to "console.log". Defaults to false.
      */
     public void setJsLoggingEnabled(boolean jsLoggingEnabled) {
-        getState().loggingEnabled = jsLoggingEnabled;
+        getElement().setProperty("loggingEnabled", jsLoggingEnabled);
     }
 
     /**
@@ -166,84 +189,40 @@ public class ChartJs extends AbstractJavaScriptComponent {
 //    }
 
     private void checkListenerState() {
-        getState().dataPointClickListenerFound = !this.dataPointClickListeners.isEmpty();
-        getState().legendClickListenerFound = !this.legendClickListeners.isEmpty();
+        getElement().setProperty("dataPointClickListenerFound", !this.dataPointClickListeners.isEmpty());
+        getElement().setProperty("legendClickListenerFound", !this.legendClickListeners.isEmpty());
+    }
+    
+    @ClientCallable
+    private void onDataPointClick(JsonArray arguments) {
+        int datasetIndex = (int) arguments.getNumber(0);
+        int dataIndex = (int) arguments.getNumber(1);
+        for (DataPointClickListener l : dataPointClickListeners) {
+            l.onDataPointClick(datasetIndex, dataIndex);
+        }
+    }
+    
+    @ClientCallable
+    private void onLegendClick(JsonArray arguments) {
+        int datasetIndex = (int) arguments.getNumber(0);
+        boolean visible = arguments.getBoolean(1);
+        JsonArray visblesJson = arguments.getArray(2);
+        int[] visibles = new int[visblesJson.length()];
+        for (int i = 0 ; i < visblesJson.length(); i++)
+            visibles[i] = (int)visblesJson.getNumber(i);
+
+        for (LegendClickListener l : legendClickListeners) {
+            l.onLegendClick(datasetIndex, visible, visibles);
+        }
     }
 
-    private void addJsFunctions() {
-        // this function can be called in chartjs-connector e.g. self.onDataPointClick(datasetIndex, dataIndex)
-        addFunction("onDataPointClick", new JavaScriptFunction() {
-            private static final long serialVersionUID = -6280339244713509848L;
-
-            @Override
-            public void call(JsonArray arguments) {
-                int datasetIndex = (int) arguments.getNumber(0);
-                int dataIndex = (int) arguments.getNumber(1);
-                for (DataPointClickListener l : dataPointClickListeners) {
-                    l.onDataPointClick(datasetIndex, dataIndex);
-                }
-            }
-        });
-        addFunction("onLegendClick", new JavaScriptFunction() {
-
-			private static final long serialVersionUID = 2949833327369862993L;
-
-			@Override
-			public void call(JsonArray arguments) {
-                int datasetIndex = (int) arguments.getNumber(0);
-                boolean visible = arguments.getBoolean(1);
-                JsonArray visblesJson = arguments.getArray(2);
-                int[] visibles = new int[visblesJson.length()];
-                for (int i = 0 ; i < visblesJson.length(); i++)
-                	visibles[i] = (int)visblesJson.getNumber(i);
-
-                for (LegendClickListener l : legendClickListeners) {
-                    l.onLegendClick(datasetIndex, visible, visibles);
-                }
-			}
-
-        });
-
-//        addFunction("sendImageDataUrl",  new JavaScriptFunction() {
-//            private static final long serialVersionUID = -6280339244713509848L;
-//
-//            @Override
-//            public void call(JsonArray arguments) {
-//                String dataUrl = arguments.getString(0);
-//                String encodingPrefix = "base64,";
-//                int contentStartIndex = dataUrl.indexOf(encodingPrefix) + encodingPrefix.length();
-//                byte[] imageData = Base64.getDecoder().decode(dataUrl.substring(contentStartIndex));
-//                for (DownloadListener l : downloadListeners) {
-//                    l.onDownload(imageData);
-//                }
-//            }
-//        });
-    }
-
-//    public void download() {
-//        download(ImageType.PNG);
-//    }
-//
-//    public void download(ImageType imageType) {
-//        download(ImageType.PNG, null);
-//    }
-//
-//    public void download(ImageType imageType, Double imageQuality) {
-//        if (imageType == null) {
-//            imageType = ImageType.PNG;
-//        }
-//        // assert that a download listener is added
-//        if (this.downloadListeners == null || this.downloadListeners.isEmpty()) {
-//            throw new IllegalArgumentException("No download listener found! Make sure use addDownloadListener before calling download");
-//        }
-//        callFunction("getImageDataUrl", imageType.toString().toLowerCase(), imageQuality);
-//    }
-
+/*
     @Override
     protected ChartJsState getState() {
+        getElement()
         return (ChartJsState) super.getState();
-    }
-
+    } */
+    
     /**
      * Show the download action in the menu.
      *
@@ -251,7 +230,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      *            True, the download action in the menu should be displayed.
      */
     public void setShowDownloadAction(boolean showDownloadAction) {
-        getState().showDownloadAction = showDownloadAction;
+        getElement().setAttribute("showDownloadAction", showDownloadAction);
     }
 
     /**
@@ -261,7 +240,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      *            The new text for the download action.
      */
     public void setDownloadActionText(String downloadActionText) {
-        getState().downloadActionText = downloadActionText;
+        getElement().setAttribute("downloadActionText", downloadActionText);
     }
 
     /**
@@ -272,7 +251,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      *            defaults to chart.png.
      */
     public void setDownloadActionFilename(String downloadActionFilename) {
-        getState().downloadActionFilename = downloadActionFilename;
+        getElement().setAttribute("downloadActionFilename", downloadActionFilename);
     }
 
     /**
@@ -283,7 +262,7 @@ public class ChartJs extends AbstractJavaScriptComponent {
      *            Set to true for downloading images with a white background.
      */
     public void setDownloadSetWhiteBackground(boolean downloadSetWhiteBackground) {
-        getState().downloadSetWhiteBackground = downloadSetWhiteBackground;
+        getElement().setAttribute("downloadSetWhiteBackground", downloadSetWhiteBackground);
     }
 
     /**
@@ -304,17 +283,17 @@ public class ChartJs extends AbstractJavaScriptComponent {
 
         // callback ID will be used as key in ChartJsState.menuItems and also as JavaScript function name
         String callbackId = "ChartJsMenuItem" + nextMenuId.incrementAndGet();
-        ChartJsState state = getState();
+        /*ChartJsState state = getState();
         if (state.menuItems == null) {
             state.menuItems = new HashMap<>();
         }
         state.menuItems.put(callbackId, menuTitle);
-
-        addFunction(callbackId, new JavaScriptFunction() {
+*/
+        /*addFunction(callbackId, new JavaScriptFunction() {
             @Override
             public void call(JsonArray arguments) {
                 action.run();
             }
-        });
+        });*/ 
     }
 }
