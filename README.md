@@ -1,14 +1,20 @@
-# Vaadin Chart.js
-[![Download](https://img.shields.io/bintray/v/moberwasserlechner/maven/vaadin-chartjs.svg)](https://bintray.com/moberwasserlechner/maven/vaadin-chartjs/_latestVersion)
-[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-ChartJS-00b4f0.svg)](https://vaadin.com/directory/component/chartjs-add-on)
-[![Stars on Vaadin Directory](https://img.shields.io/vaadin-directory/star/chartjs-add-on.svg)](https://vaadin.com/directory/component/chartjs-add-on)
-[![Travis](https://img.shields.io/travis/moberwasserlechner/vaadin-chartjs/master.svg?maxAge=2592000)](https://travis-ci.org/moberwasserlechner/vaadin-chartjs)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/moberwasserlechner)
+# Vaadin 14 Chart.js
+Vaadin 14 addon for the Chart.js charting library. https://github.com/chartjs/Chart.js
 
-Vaadin 8 addon for the Chart.js charting library. https://github.com/chartjs/Chart.js
+## Notice
+
+This add-on was originally created by [moberwasserlechner](https://github.com/moberwasserlechner/), but the repository is now archived. I reworked it to work with Vaadin 14 because I had to upgrade an existing Vaadin 8 project using this add-on to Vaadin 14. This is probably not the most efficient implementation (I currently send the state to the client every time it is changed), and I am open to pull requests. I have also deprecated a few features.
 
 ## Features
+### Deprecated
+* Menu API 
+    * can be replaced by Vaadin 14 Menu component(s).
+* Download image of chart 
+    * Most modern browsers allow you to download a canvas
+* Annotations
+    * I plan to re-implement and test this, but haven't yet  
 
+### Current
 * Fluent api to configure the charts
 * Supported chart types are
   * Horizontal bar chart
@@ -21,33 +27,13 @@ Vaadin 8 addon for the Chart.js charting library. https://github.com/chartjs/Cha
   * Radar chart
   * Scatter line chart
 * Zoom/Pan support
-* Line and box annotations
 * Data point click listener
-
-## Demo
-
-### Vaadin Addon
-
-* http://vaadin-demos.qqjtxeeuih.eu-central-1.elasticbeanstalk.com:5600
-
-If you want to run the demo application locally, see the [demo repository](https://github.com/moberwasserlechner/vaadin-chartjs-demo)
 
 ### Chart.js
 
 * http://www.chartjs.org/samples/latest/
 * https://github.com/chartjs/Chart.js/releases/latest
 
-## Installation
-
-### Download
-
-[![Bintray](https://img.shields.io/bintray/v/moberwasserlechner/maven/vaadin-chartjs.svg)](https://bintray.com/moberwasserlechner/maven/vaadin-chartjs/_latestVersion)
-
-### Vaadin Directory
-
-Get the addon from https://vaadin.com/directory/component/chartjs-add-on.
-
-You can download the addon there as well, but you will need to create a free vaadin account first. For Maven style dependencies please use below settings.
 
 ### Maven
 
@@ -193,18 +179,7 @@ Try to change only parts your feature or bugfix requires.
 
 ## License
 
-MIT. Please see [LICENSE](https://github.com/moberwasserlechner/vaadin-chartjs/blob/master/LICENSE).
+MIT. Please see [LICENSE](https://github.com/rudiejd/vaadin-chartjs/blob/master/LICENSE).
 
-## BYTEOWLS Software & Consulting
-
-This plugin is powered by [BYTEOWLS Software & Consulting](https://byteowls.com).
-
-### Commercial support and consulting
-
-We create plugins for apps we build and share them **as it is** with the community.
-
-I you have a feature request, need support how to use the plugin or
-need a release breaking with our normal release cycle you have the possibility
-to sponsor the development by paying for this custom development or support.
 
 See the wiki page for how to request a quote. Donations are possible as well ;).
