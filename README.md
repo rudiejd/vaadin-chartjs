@@ -13,6 +13,8 @@ This add-on was originally created by [moberwasserlechner](https://github.com/mo
     * Most modern browsers allow you to download a canvas
 * Annotations
     * I plan to re-implement and test this, but haven't yet  
+* Pan support
+    * Plan to fix panning but haven't quite figured it out yet
 
 ### Current
 * Fluent api to configure the charts
@@ -26,8 +28,9 @@ This add-on was originally created by [moberwasserlechner](https://github.com/mo
   * Bubble chart
   * Radar chart
   * Scatter line chart
-* Zoom/Pan support
+* Zoom support
 * Data point click listener
+* Legend click listener
 
 ### Chart.js
 
