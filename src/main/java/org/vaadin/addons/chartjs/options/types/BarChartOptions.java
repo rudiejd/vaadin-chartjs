@@ -1,7 +1,7 @@
 package org.vaadin.addons.chartjs.options.types;
 
+import org.vaadin.addons.chartjs.config.ChartConfig;
 import org.vaadin.addons.chartjs.options.AbstractScalableOptions;
-import org.vaadin.chartjs.config.ChartConfig;
 
 public class BarChartOptions extends AbstractScalableOptions<BarChartOptions> {
 

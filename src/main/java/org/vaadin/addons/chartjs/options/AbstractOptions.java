@@ -7,10 +7,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import org.vaadin.addons.chartjs.config.ChartConfig;
 import org.vaadin.addons.chartjs.options.elements.Element;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
-import org.vaadin.chartjs.config.ChartConfig;
 
 public abstract class AbstractOptions<T> implements JsonBuilder, Serializable {
 

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.vaadin.chartjs.config.ChartConfig;
+import org.vaadin.addons.chartjs.config.ChartConfig;
 
 
 @JavaScript("hammer.min.js") 

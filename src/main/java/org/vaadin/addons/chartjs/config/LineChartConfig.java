@@ -1,4 +1,4 @@
-package org.vaadin.chartjs.config;
+package org.vaadin.addons.chartjs.config;
 
 import org.vaadin.addons.chartjs.data.Data;
 import org.vaadin.addons.chartjs.options.types.LineChartOptions;

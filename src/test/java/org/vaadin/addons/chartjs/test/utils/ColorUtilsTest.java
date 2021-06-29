@@ -1,4 +1,4 @@
-package org.vaadin.chartjs.test.utils;
+package org.vaadin.addons.chartjs.test.utils;
 
 import org.junit.Assert;
 import org.junit.Test;

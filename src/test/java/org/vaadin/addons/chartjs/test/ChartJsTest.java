@@ -1,7 +1,8 @@
-package org.vaadin.chartjs.test;
+package org.vaadin.addons.chartjs.test;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.vaadin.addons.chartjs.config.LineChartConfig;
 import org.vaadin.addons.chartjs.data.LineDataset;
 import org.vaadin.addons.chartjs.options.AnimationEasing;
 import org.vaadin.addons.chartjs.options.InteractionMode;
@@ -10,7 +11,6 @@ import org.vaadin.addons.chartjs.options.elements.Rectangle.RectangleEdge;
 import org.vaadin.addons.chartjs.options.scale.Axis;
 import org.vaadin.addons.chartjs.options.scale.LinearScale;
 import org.vaadin.addons.chartjs.options.scale.LogarithmicScale;
-import org.vaadin.chartjs.config.LineChartConfig;
 
 import elemental.json.JsonValue;
 

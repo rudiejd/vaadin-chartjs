@@ -1,8 +1,8 @@
 package org.vaadin.addons.chartjs.options;
 
+import org.vaadin.addons.chartjs.config.ChartConfig;
 import org.vaadin.addons.chartjs.options.scale.Scales;
 import org.vaadin.addons.chartjs.utils.JUtils;
-import org.vaadin.chartjs.config.ChartConfig;
 
 import elemental.json.JsonObject;
 

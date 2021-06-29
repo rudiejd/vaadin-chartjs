@@ -1,4 +1,4 @@
-package org.vaadin.chartjs.config;
+package org.vaadin.addons.chartjs.config;
 
 import java.io.Serializable;
 
