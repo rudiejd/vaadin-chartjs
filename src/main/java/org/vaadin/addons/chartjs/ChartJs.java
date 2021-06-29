@@ -9,6 +9,7 @@ import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.function.SerializableConsumer;
 
@@ -24,13 +25,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.vaadin.addons.chartjs.config.ChartConfig;
 
 
-@JavaScript("hammer.min.js") 
-@JavaScript("Moment.js")
-@JavaScript("Chart.min.js") 
-@JavaScript("chartjs-plugin-zoom.min.js")
-@JavaScript("chartjs-plugin-annotation.min.js") 
-@JavaScript("chartjs-connector.js")
-@StyleSheet("chartjs-connector.css")
+@JsModule("./hammer.min.js") 
+@JsModule("./Moment.js")
+@JsModule("./Chart.min.js") 
+@JsModule("./chartjs-plugin-zoom.min.js")
+@JsModule("./chartjs-plugin-annotation.min.js") 
+@JsModule("./chartjs-connector.js")
+@StyleSheet("./chartjs-connector.css")
 @Tag("chart")
 public class ChartJs extends Component implements HasSize {
 

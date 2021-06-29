@@ -43,8 +43,8 @@ This add-on was originally created by [moberwasserlechner](https://github.com/mo
 ```xml
 <dependencies>
   <dependency>
-    <groupId>org.webjars.bowergithub.rudiejd</groupId>
-    <artifactId>vaadin-chartjs</artifactId>
+    <groupId>org.vaadin.addons.chartjs</groupId>
+    <artifactId>chartjs</artifactId>
     <version>use.lastest.version</version>
   </dependency>
 </dependencies>
@@ -58,7 +58,7 @@ repositories {
 }
 
 dependencies {
-  compile ("org.webjars.bowergithub.rudiejd:vaadin-chartjs:use.latest.version")
+  compile ("org.vaadin.addons.chartjs:vaadin-chartjs:use.latest.version")
 }
 ```
     
