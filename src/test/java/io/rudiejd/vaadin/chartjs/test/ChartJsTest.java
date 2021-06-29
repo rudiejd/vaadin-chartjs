@@ -1,4 +1,4 @@
-package com.byteowls.vaadin.chartjs;
+package io.rudiejd.vaadin.chartjs.test;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,7 +1,6 @@
 plugins {
     id "com.jfrog.bintray" version "1.8.4"
     id 'war'
-	id 'org.gretty' version '3.0.4'
     id 'com.vaadin' version '0.14.6.0'
 }
 apply plugin: 'java'
@@ -19,11 +18,6 @@ repositories {
     jcenter()
 }
 
-gretty {
-	contextPath = "/"
-	servletContainer = "jetty9.4"
-	scanInterval = 0.5
-}
 vaadin {
 	pnpmEnable = false
 }
@@ -31,7 +25,6 @@ vaadin {
 dependencies {
 	implementation enforcedPlatform("com.vaadin:vaadin-bom:${vaadinVersion}")
     compile ("com.vaadin:vaadin-core:${vaadinVersion}")
-	providedCompile "javax.servlet:javax.servlet-api:3.1.0"
     testCompile "junit:junit:4.12"
 }
 
@@ -66,11 +59,11 @@ jar {
         attributes "Vaadin-Package-Version": "1"
         attributes "Implementation-Title": "Chart.js Add-on"
         attributes "Implementation-Version": project.version
-        attributes "Implementation-Vendor": 'Michael Oberwasserlechner'
-        instruction 'Import-Package', '!com.google.gwt.*', '!com.vaadin.client.*', '*'
-        instruction 'Bundle-Vendor', 'Michael Oberwasserlechner'
+        attributes "Implementation-Vendor": 'JD Rudie'
+        instruction 'Import-Package', '!com.google.gwt.*', '*'
+        instruction 'Bundle-Vendor', 'JD Rudie'
         instruction 'Bundle-Description', 'Chart.js Add-on'
-        instruction 'Bundle-DocURL', 'https://github.com/moberwasserlechner/vaadin-chartjs'
+        instruction 'Bundle-DocURL', 'https://github.com/rudiejd/vaadin-chartjs'
     }
 }
 
@@ -87,7 +80,7 @@ task vaadinDirectory(type: Zip) {
 Vaadin-Package-Version: 1
 Vaadin-Addon: """+project.artifactId+"""-"""+project.version+""".jar
 Vaadin-License-Title: MIT
-Implementation-Vendor: Michael Oberwasserlechner
+Implementation-Vendor: JD Rudie
 Implementation-Title: Chart.js Add-on
 Implementation-Version: """+project.version+"""
 """
