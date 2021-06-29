@@ -41,20 +41,9 @@ This add-on was originally created by [moberwasserlechner](https://github.com/mo
 ### Maven
 
 ```xml
-<repositories>
-  <repository>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
-    <id>central</id>
-    <name>bintray</name>
-    <url>https://jcenter.bintray.com</url>
-  </repository>
-</repositories>
-
 <dependencies>
   <dependency>
-    <groupId>com.byteowls</groupId>
+    <groupId>org.webjars.bowergithub.rudiejd</groupId>
     <artifactId>vaadin-chartjs</artifactId>
     <version>use.lastest.version</version>
   </dependency>
@@ -65,11 +54,11 @@ This add-on was originally created by [moberwasserlechner](https://github.com/mo
 
 ```gradle
 repositories {
-  jcenter()
+  mavenCentral()
 }
 
 dependencies {
-  compile ("com.byteowls:vaadin-chartjs:use.lastest.version")
+  compile ("org.webjars.bowergithub.rudiejd:vaadin-chartjs:use.latest.version")
 }
 ```
     
