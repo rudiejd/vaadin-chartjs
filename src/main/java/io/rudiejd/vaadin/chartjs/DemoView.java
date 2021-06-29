@@ -7,6 +7,7 @@ import io.rudiejd.vaadin.chartjs.data.BarDataset;
 import io.rudiejd.vaadin.chartjs.data.Dataset;
 import io.rudiejd.vaadin.chartjs.data.LineDataset;
 import io.rudiejd.vaadin.chartjs.options.Position;
+import io.rudiejd.vaadin.chartjs.options.zoom.XYMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,16 @@ public class DemoView extends VerticalLayout {
                 .responsive(true)
                 .title()
                     .display(true)
-                    .position(Position.LEFT)
+                    .position(Position.TOP)
                     .text("Chart.js Combo Bar Line Chart")
                     .and()
                 .zoom()
+                .mode(XYMode.X)
                 .enabled(true)
+                .and()
+                .pan()
+                .enabled(true)
+                .mode(XYMode.X)
                 .and()
                .done();
 
@@ -68,8 +74,9 @@ public class DemoView extends VerticalLayout {
         });
     
         chart.setJsLoggingEnabled(true);
-        
+        chart.setSizeFull();
         add(chart);
+        
     }
 
 }

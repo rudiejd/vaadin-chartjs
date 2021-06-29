@@ -22,9 +22,8 @@ repositories {
 gretty {
 	contextPath = "/"
 	servletContainer = "jetty9.4"
-	scanInterval = 2
+	scanInterval = 0.5
 }
-
 vaadin {
 	pnpmEnable = false
 }

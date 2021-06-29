@@ -23,15 +23,15 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
+@JavaScript("hammer.min.js") 
 @JavaScript("Moment.js")
 @JavaScript("Chart.min.js") 
-@JavaScript("hammer.min.js") 
 @JavaScript("chartjs-plugin-zoom.min.js")
 @JavaScript("chartjs-plugin-annotation.min.js") 
 @JavaScript("chartjs-connector.js")
 @StyleSheet("chartjs-connector.css")
 @Tag("chart")
-public class ChartJs extends Component {
+public class ChartJs extends Component implements HasSize {
 
     /**
      * indicates whether we've connected to object in javascript connector
