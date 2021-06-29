@@ -4,9 +4,13 @@ import com.byteowls.vaadin.chartjs.config.ChartConfig;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasSize;
+import com.vaadin.flow.component.PropertyDescriptor;
+import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.function.SerializableConsumer;
 
 import elemental.json.JsonArray;
@@ -24,8 +28,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @JavaScript("chartjs-plugin-zoom.min.js")
 @JavaScript("chartjs-plugin-annotation.min.js") 
 @JavaScript("chartjs-connector.js")
-@StyleSheet("vaadin://chartjs/chartjs-connector.css")
-@Tag("div")
+@StyleSheet("chartjs-connector.css")
+@Tag("chart")
 public class ChartJs extends Component {
 
     private static final long serialVersionUID = 2999562112373836140L;
@@ -34,6 +38,10 @@ public class ChartJs extends Component {
      * property name.
      */
     private static final AtomicInteger nextMenuId = new AtomicInteger(0);
+    
+    private static final PropertyDescriptor<String, String> chartIdProperty =
+            PropertyDescriptors.propertyWithDefault("id", "");
+    
 
 //    public enum ImageType {
 //        PNG
@@ -56,6 +64,7 @@ public class ChartJs extends Component {
 //    private List<ChartJs.DownloadListener> downloadListeners = new ArrayList<>();
 
     private ChartConfig chartConfig;
+    private ChartJsState state = new ChartJsState();
 
     /**
      * Construct a ChartJs. Be aware that you have to set a {@link ChartConfig} as well. Use {@link #configure(ChartConfig)} to do so.
@@ -64,6 +73,7 @@ public class ChartJs extends Component {
         getElement().getClassList().add("v-chartjs");
         getElement().getClassList().add("-v-chartjs");
         getElement().getClassList().add("v-widget");
+        setChartTagId("chartjs-" + this.hashCode() + "-" + System.nanoTime());
     }
 
     /**
@@ -73,7 +83,7 @@ public class ChartJs extends Component {
     public ChartJs(ChartConfig chartConfig) {
         this();
         configure(chartConfig);
-		getElement().setText("poop");
+        initConnector();
     }
 
     /**
@@ -83,21 +93,30 @@ public class ChartJs extends Component {
     public void configure(ChartConfig chartConfig) {
         if (chartConfig != null) {
             this.chartConfig = chartConfig;
+            getState().configurationJson = chartConfig.buildJson();
+        }
+        UI ui = getUI().orElse(null);
+        if (ui != null) {
+            ui.getPage().executeJs("document.getElementById(\"" + getChartId() + "\").config = $0; console.log($0)", getState().configurationJson);
+
         }
     }
 
     @Override
     protected void onAttach(AttachEvent e) {
-        if (chartConfig != null) {
-            getElement().setPropertyJson("chartConfig", (JsonValue)chartConfig.buildJson());
-        }
-        initConnector();
         super.onAttach(e);
+    }
+    
+    protected void onStateChange() {
+        UI ui = getUI().orElse(null);
+        if (ui != null) {
+            ui.getPage().executeJs("document.getElementById($0).onStateChange($1);", getChartId(), getState().buildJson());
+        }
     }
 
     private void initConnector() {
         runBeforeClientResponse(ui -> 
-            ui.getPage().executeJs("window.com_byteowls_vaadin_chartjs_ChartJs($0)", getElement()));
+            ui.getPage().executeJs("window.com_byteowls_vaadin_chartjs_ChartJs($0); console.log($0);", getElement()).then((r) -> onStateChange()));
     }
 
     void runBeforeClientResponse(SerializableConsumer<UI> command) {
@@ -125,7 +144,10 @@ public class ChartJs extends Component {
      * Destroy the chart. This will call chartjs.destroy();
      */
     public void destroy() {
-        getElement().executeJs("destroy()");
+        UI ui = getUI().orElse(null);
+        if (ui != null) {
+            ui.getPage().executeJs("document.getElementById($0).destroy()", getChartId());
+        }
     }
 
     /**
@@ -150,7 +172,8 @@ public class ChartJs extends Component {
      * @param jsLoggingEnabled If true the connector script will log defined messages to "console.log". Defaults to false.
      */
     public void setJsLoggingEnabled(boolean jsLoggingEnabled) {
-        getElement().setProperty("loggingEnabled", jsLoggingEnabled);
+        getState().loggingEnabled = jsLoggingEnabled;
+        onStateChange();
     }
 
     /**
@@ -189,8 +212,8 @@ public class ChartJs extends Component {
 //    }
 
     private void checkListenerState() {
-        getElement().setProperty("dataPointClickListenerFound", !this.dataPointClickListeners.isEmpty());
-        getElement().setProperty("legendClickListenerFound", !this.legendClickListeners.isEmpty());
+        getState().dataPointClickListenerFound = !this.dataPointClickListeners.isEmpty();
+        getState().legendClickListenerFound = !this.legendClickListeners.isEmpty();
     }
     
     @ClientCallable
@@ -216,12 +239,9 @@ public class ChartJs extends Component {
         }
     }
 
-/*
-    @Override
     protected ChartJsState getState() {
-        getElement()
-        return (ChartJsState) super.getState();
-    } */
+        return state;
+    } 
     
     /**
      * Show the download action in the menu.
@@ -230,7 +250,8 @@ public class ChartJs extends Component {
      *            True, the download action in the menu should be displayed.
      */
     public void setShowDownloadAction(boolean showDownloadAction) {
-        getElement().setAttribute("showDownloadAction", showDownloadAction);
+        getState().showDownloadAction = showDownloadAction;
+        onStateChange();
     }
 
     /**
@@ -240,7 +261,8 @@ public class ChartJs extends Component {
      *            The new text for the download action.
      */
     public void setDownloadActionText(String downloadActionText) {
-        getElement().setAttribute("downloadActionText", downloadActionText);
+        getState().downloadActionText = downloadActionText;
+        onStateChange();
     }
 
     /**
@@ -251,7 +273,8 @@ public class ChartJs extends Component {
      *            defaults to chart.png.
      */
     public void setDownloadActionFilename(String downloadActionFilename) {
-        getElement().setAttribute("downloadActionFilename", downloadActionFilename);
+        getState().downloadActionFilename = downloadActionFilename;
+        onStateChange();
     }
 
     /**
@@ -262,7 +285,8 @@ public class ChartJs extends Component {
      *            Set to true for downloading images with a white background.
      */
     public void setDownloadSetWhiteBackground(boolean downloadSetWhiteBackground) {
-        getElement().setAttribute("downloadSetWhiteBackground", downloadSetWhiteBackground);
+        getState().downloadSetWhiteBackground = downloadSetWhiteBackground;
+        onStateChange();
     }
 
     /**
@@ -283,17 +307,25 @@ public class ChartJs extends Component {
 
         // callback ID will be used as key in ChartJsState.menuItems and also as JavaScript function name
         String callbackId = "ChartJsMenuItem" + nextMenuId.incrementAndGet();
-        /*ChartJsState state = getState();
+        ChartJsState state = getState();
         if (state.menuItems == null) {
             state.menuItems = new HashMap<>();
         }
         state.menuItems.put(callbackId, menuTitle);
-*/
         /*addFunction(callbackId, new JavaScriptFunction() {
             @Override
             public void call(JsonArray arguments) {
                 action.run();
             }
         });*/ 
+    }
+    
+    public ChartJs setChartTagId(String value) {
+        chartIdProperty.set(this, value);
+        return this;
+    }
+    
+    public String getChartId() {
+        return chartIdProperty.get(this);
     }
 }

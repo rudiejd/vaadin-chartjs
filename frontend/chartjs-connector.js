@@ -1,14 +1,14 @@
 window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
     // see the javadoc of com.vaadin.ui.
-    // for all functions on this.
-    // Please note that in JavaScript, this is not necessarily defined inside callback functions and it might therefore be necessary to assign the reference to a separate variable
-    var self = this;
-    var loggingEnabled = false;
-    var canvas;
-    var chartjs;
-    var stateChangedCnt = 0;
-    var cbPrefix = '__cb_'; // Also cf. JUtils
-    var cbArgsPostfix = '_args'; // Also cf. JUtils
+    // for all functions on e.
+    // Please note that in JavaScript, e is not necessarily defined inside callback functions and it might therefore be necessary to assign the reference to a separate variable
+    var self = e;
+    e.loggingEnabled = true;
+    e.canvas = null;
+    e.chartjs = null; 
+    e.stateChangedCnt = 0;
+    e.cbPrefix = '__cb_'; // Also cf. JUtils
+    e.cbArgsPostfix = '_args'; // Also cf. JUtils
     // The button HTML Element (div) opening the dropdown menu
     var menuButton;
     // The popup with the contents of the dropdown menu
@@ -16,60 +16,58 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
     // The the menu title element
     var menuTitle;
     // Set to true while rendering the image for export
-    this.renderingExport = false;
-
+    e.renderingExport = false;
     // called every time the state is changed
-    this.onStateChange = function() {
-        stateChangedCnt++;
-        var state = this.getState();
-        loggingEnabled = state.loggingEnabled;
-        if (loggingEnabled) {
-            console.log("chartjs: accessing onStateChange the "+stateChangedCnt+". time");
+    e.onStateChange = function(state) {
+        e.stateChangedCnt++;
+        e.loggingEnabled = true; 
+        if (e.loggingEnabled) {
+            console.log("e.chartjs: accessing onStateChange the "+e.stateChangedCnt+". time");
         }
-        if (typeof canvas === 'undefined') {
-            if (loggingEnabled) {
-                console.log("chartjs: create canvas");
+        if (e.canvas == null) {
+            if (e.loggingEnabled) {
+                console.log("e.chartjs: create e.canvas");
             }
-            canvas = document.createElement('canvas');
+            e.canvas = document.createElement('canvas');
             if (state.width && state.width.length > 0) {
-                if (loggingEnabled) {
-                    console.log("chartjs: canvas width " + state.width);
+                if (e.loggingEnabled) {
+                    console.log("e.chartjs: e.canvas width " + state.width);
                 }
-                canvas.setAttribute('width', state.width);
+                e.canvas.setAttribute('width', state.width);
             }
             if (state.height && state.height.length > 0) {
-                if (loggingEnabled) {
-                    console.log("chartjs: canvas height " + state.height);
+                if (e.loggingEnabled) {
+                    console.log("e.chartjs: e.canvas height " + state.height);
                 }
-                canvas.setAttribute('height', state.height);
+                e.canvas.setAttribute('height', state.height);
             }
             // build the menu
             if (state.showDownloadAction || state.menuItems && state.menuItems.length > 0) {
-                this.buildMenu();
-                e.appendChild(this.menuButton);
+                e.buildMenu();
+                e.appendChild(e.menuButton);
             }
-            e.appendChild(canvas)
+            e.appendChild(e.canvas)
         } else {
-            if (loggingEnabled) {
-                console.log("chartjs: canvas already exists");
+            if (e.loggingEnabled) {
+                console.log("e.chartjs: e.canvas already exists");
             }
         }
 
-        if (typeof chartjs === 'undefined' && state.configurationJson !== 'undefined') {
-            if (loggingEnabled) {
-                console.log("chartjs: init");
+        if (e.chartjs == null && state.configurationJson !== 'undefined') {
+            if (e.loggingEnabled) {
+                console.log("e.chartjs: init");
             }
 
-            if (loggingEnabled) {
-                console.log("chartjs: configuration is\n", JSON.stringify(state.configurationJson, null, 2));
+            if (e.loggingEnabled) {
+                console.log("e.chartjs: configuration is\n", JSON.stringify(state.configurationJson, null, 2));
             }
             // parse callback functions
-            this.parseCallbacks(state.configurationJson);
+            //e.parseCallbacks(state.configurationJson);
 
             Chart.plugins.register({
                 beforeDraw: function(chartInstance) {
-                    if (loggingEnabled) {
-                        console.log("chartjs: rendering, for export: " + self.renderingExport);
+                    if (e.loggingEnabled) {
+                        console.log("e.chartjs: rendering, for export: " + self.renderingExport);
                     }
                     // the image is re-rendered for export
                     if (self.renderingExport) {
@@ -83,22 +81,22 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
                 }
             });
 
-            chartjs = new Chart(canvas, state.configurationJson);
+            e.chartjs = new Chart(e.canvas, state.configurationJson);
             // #69 the zoom/plugin captures the wheel event so no vertical scrolling is enabled if mouse is on
             if (state.configurationJson && !state.configurationJson.options.zoom) {
-                chartjs.ctx.canvas.removeEventListener('wheel', chartjs.zoom._wheelHandler );
+                e.chartjs.ctx.canvas.removeEventListener('wheel', e.chartjs.zoom._wheelHandler );
             }
 
             // only enable if there is a listener
             if (state.dataPointClickListenerFound) {
-                if (loggingEnabled) {
-                    console.log("chartjs: add data point click callback");
+                if (e.loggingEnabled) {
+                    console.log("e.chartjs: add data point click callback");
                 }
-                canvas.onclick = function(e) {
-                    var elementArr = chartjs.getElementAtEvent(e);
+                e.canvas.onclick = function(e) {
+                    var elementArr = e.chartjs.getElementAtEvent(e);
                     if (elementArr && elementArr.length > 0) {
-                        if (loggingEnabled) {
-                            console.log("chartjs: onclick elements at:");
+                        if (e.loggingEnabled) {
+                            console.log("e.chartjs: onclick elements at:");
                             console.log(elementArr[0]);
                         }
                         // call on function registered by server side component
@@ -107,14 +105,14 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
                 };
             }
             if (state.legendClickListenerFound) {
-                if (loggingEnabled) {
-                    console.log("chartjs: add legend click callback");
+                if (e.loggingEnabled) {
+                    console.log("e.chartjs: add legend click callback");
                 }
-                chartjs.legend.options.onClick = chartjs.options.legend.onClick = function (t,e) {
-                    var datasets = this.chart.data.datasets;
+                e.chartjs.legend.options.onClick = e.chartjs.options.legend.onClick = function (t,e) {
+                    var datasets = e.chart.data.datasets;
                     var dataset = datasets[e.datasetIndex];
                     dataset.hidden= !dataset.hidden;
-                    this.chart.update();
+                    e.chart.update();
                     var ret = [];
                     for (var i = 0; i < datasets.length ; i++ ) {
                         if (!datasets[i].hidden) {
@@ -126,22 +124,22 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
             }
         } else {
             // update the data
-            chartjs.config.data = this.getState().configurationJson.data;
+            e.chartjs.config.data = state.configurationJson.data;
             // update config: options must be copied separately, just copying the "options" object does not work
-            chartjs.config.options.legend = this.getState().configurationJson.options.legend;
-            chartjs.config.options.annotation = this.getState().configurationJson.options.annotation;
-            chartjs.update();
+            e.chartjs.config.options.legend = state.configurationJson.options.legend;
+            e.chartjs.config.options.annotation = state.configurationJson.options.annotation;
+            e.chartjs.update();
         }
 
-    };
+    }
 
     /**
-     * Recursively searches obj for string properties starting with this.cbPrefix and sets the
+     * Recursively searches obj for string properties starting with e.cbPrefix and sets the
      * property with the name without the prefix with a function based on the JavaScript code found
      * in the property's value.
      * If obj is not set, starts with the chartjs configuration.
      */
-    this.parseCallbacks = function(obj) {
+    e.parseCallbacks = function(obj) {
         if (!obj) {
             obj = chartjs.config;
         }
@@ -159,7 +157,7 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
             // recurse into objects (includes arrays)
             else if (typeof prop === 'object') {
                 try {
-                    this.parseCallbacks(prop);
+                    e.parseCallbacks(prop);
                 }
                 catch (err) {
                     console.error('Error parsing script nested in property: ' + key);
@@ -174,7 +172,7 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
                 var args = obj[key + cbArgsPostfix];
                 // parse the function and set it as property to obj
                 try {
-                    obj[newKey] = this.parseCallback(prop, args);
+                    obj[newKey] = e.parseCallback(prop, args);
                 }
                 catch (err) {
                     // print property name and fail recursion
@@ -188,7 +186,7 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
     /**
      * Parses callback code and returns it as function.
      */
-    this.parseCallback = function(code, args) {
+    e.parseCallback = function(code, args) {
         var callback = code.trim();
         // declaration of the function or a return statement is not required to be provided for
         // a simple calculation, but required for parsing
@@ -214,7 +212,7 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
         }
     }
 
-    this.getImageDataUrl = function(type, quality) {
+    e.getImageDataUrl = function(type, quality) {
         if (typeof quality !== 'undefined') {
             console.log("chartjs: download image quality: " + quality);
         }
@@ -223,51 +221,51 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
         self.sendImageDataUrl(chartjs.toBase64Image());
     };
 
-    this.destroyChart = function() {
+    e.destroyChart = function() {
         if (chartjs) {
             chartjs.destroy();
         }
-        if (this.menuPopup) {
-            document.removeChild(this.menuPopup);
-            this.menuPopup = null;
-            document.removeEventListener('click', this.documentClickListener);
+        if (e.menuPopup) {
+            document.removeChild(e.menuPopup);
+            e.menuPopup = null;
+            document.removeEventListener('click', e.documentClickListener);
         }
     };
 
     // #21 Build a menu 
-    this.buildMenu = function() {
+    e.buildMenu = function() {
         // create the menu button
-        this.menuButton = this.createDiv('v-menubar v-widget');
-        this.menuTitle = this.createDiv('v-menubar-menuitem');
-        this.menuButton.appendChild(this.menuTitle);
-        var menuTitleCaption = this.createDiv('v-menubar-menuitem-caption v-icon Vaadin-Icons');
+        e.menuButton = e.createDiv('v-menubar v-widget');
+        e.menuTitle = e.createDiv('v-menubar-menuitem');
+        e.menuButton.appendChild(e.menuTitle);
+        var menuTitleCaption = e.createDiv('v-menubar-menuitem-caption v-icon Vaadin-Icons');
         // for a text menu remove the v-icon class above and set the text content to some string
         // to be defined in the state
         // menuTitleCaption.textContent = 'Menu';
-        this.menuTitle.appendChild(menuTitleCaption);
+        e.menuTitle.appendChild(menuTitleCaption);
         // toggle state on click on the button
-        this.menuButton.onclick = function() {
+        e.menuButton.onclick = function() {
             self.setMenuOpenState(self.menuPopup.style.display === 'none');
         };
         // close the menu if the user clicked somewhere outside the menu
-        document.addEventListener('click', this.documentClickListener);
+        document.addEventListener('click', e.documentClickListener);
 
         // build the popup / dropdown and its content
-        this.menuPopup = this.createDiv('v-chartjs v-menubar-popup');
+        e.menuPopup = e.createDiv('v-chartjs v-menubar-popup');
         // needs to be set here explicitly, since it is also used for detecting the state
-        this.menuPopup.style.display = 'none';
-        document.getElementsByClassName('v-overlay-container')[0].appendChild(this.menuPopup)
+        e.menuPopup.style.display = 'none';
+        document.getElementsByClassName('v-overlay-container')[0].appendChild(e.menuPopup)
         // manual, absolute positioning on click
-        var popupContent = this.createDiv('popupContent');
-        this.menuPopup.appendChild(popupContent);
-        var subMenu = this.createDiv('v-menubar-submenu v-widget');
+        var popupContent = e.createDiv('popupContent');
+        e.menuPopup.appendChild(popupContent);
+        var subMenu = e.createDiv('v-menubar-submenu v-widget');
         popupContent.appendChild(subMenu);
-        var state = this.getState();
+        var state = e.getState();
         // add the user defined menu items
-        var menuItems = this.getState().menuItems;
+        var menuItems = e.getState().menuItems;
         if (menuItems) {
             for (var action in menuItems) {
-                this.createMenuItem(subMenu, menuItems[action], this[action]);
+                e.createMenuItem(subMenu, menuItems[action], e[action]);
             }
         }
         // add the download action
@@ -276,14 +274,14 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
             if (state.downloadActionText) {
                 downloadActionText = state.downloadActionText;
             }
-            this.createMenuItem(subMenu, downloadActionText, this.startImageDownload);
+            e.createMenuItem(subMenu, downloadActionText, e.startImageDownload);
         }
     };
 
     /**
      * Starts the image download
      */
-    this.startImageDownload = function(e) {
+    e.startImageDownload = function(e) {
         self.renderingExport = true;
         chartjs.render({duration: 0});
         var filename = self.getState().downloadActionFilename;
@@ -312,7 +310,7 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
      * @param title The menu entry title.
      * @param listener Callback called if the item is clicked.
      */
-    this.createMenuItem = function(subMenu, title, listener) {
+    e.createMenuItem = function(subMenu, title, listener) {
         var subMenuItem = document.createElement('span');
         subMenuItem.className = 'v-menubar-menuitem';
         subMenu.appendChild(subMenuItem);
@@ -329,17 +327,17 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
     /**
      * Opens or closes the dropdown menu, pass true to open it.
      */
-    this.setMenuOpenState = function(open) {
+    e.setMenuOpenState = function(open) {
         if (!open) {
-            this.menuTitle.className = 'v-menubar-menuitem';
-            this.menuPopup.style.display = 'none';
+            e.menuTitle.className = 'v-menubar-menuitem';
+            e.menuPopup.style.display = 'none';
         } else {
-            this.menuTitle.className = 'v-menubar-menuitem v-menubar-menuitem-selected';
-            this.menuPopup.style.display = 'block';
-            var clientRect = this.menuButton.getBoundingClientRect();
-            this.menuPopup.style.top = (clientRect.top + clientRect.height) + 'px';
-            // this.menuPopup.style.left = clientRect.left + 'px';
-            this.menuPopup.style.right = (window.innerWidth - clientRect.right) + 'px';
+            e.menuTitle.className = 'v-menubar-menuitem v-menubar-menuitem-selected';
+            e.menuPopup.style.display = 'block';
+            var clientRect = e.menuButton.getBoundingClientRect();
+            e.menuPopup.style.top = (clientRect.top + clientRect.height) + 'px';
+            // e.menuPopup.style.left = clientRect.left + 'px';
+            e.menuPopup.style.right = (window.innerWidth - clientRect.right) + 'px';
         }
     }
 
@@ -347,7 +345,7 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
      * Creates and returns a new div element and sets the class attribute to the
      * given css classes.
      */
-    this.createDiv = function(className) {
+    e.createDiv = function(className) {
         var div = document.createElement('div');
         if (className) {
             div.className = className;
@@ -359,7 +357,7 @@ window.com_byteowls_vaadin_chartjs_ChartJs = function(e) {
      * Document click listener used for detecting clicks outside of the menu, which should close
      * the menu.
      */
-    this.documentClickListener = function(event) {
+    e.documentClickListener = function(event) {
         var rect = self.menuPopup.getBoundingClientRect();
         var clickedInside = (event.clientX > rect.left && event.clientX < rect.right
                          && event.clientY > rect.top  && event.clientY < rect.bottom)
