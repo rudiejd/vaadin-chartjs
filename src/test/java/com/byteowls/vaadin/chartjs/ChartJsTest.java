@@ -3,17 +3,16 @@ package com.byteowls.vaadin.chartjs;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.byteowls.vaadin.chartjs.config.LineChartConfig;
-import com.byteowls.vaadin.chartjs.data.LineDataset;
-import com.byteowls.vaadin.chartjs.options.AnimationEasing;
-import com.byteowls.vaadin.chartjs.options.InteractionMode;
-import com.byteowls.vaadin.chartjs.options.Position;
-import com.byteowls.vaadin.chartjs.options.elements.Rectangle.RectangleEdge;
-import com.byteowls.vaadin.chartjs.options.scale.Axis;
-import com.byteowls.vaadin.chartjs.options.scale.LinearScale;
-import com.byteowls.vaadin.chartjs.options.scale.LogarithmicScale;
-
 import elemental.json.JsonValue;
+import io.rudiejd.chartjs.config.LineChartConfig;
+import io.rudiejd.vaadin.chartjs.data.LineDataset;
+import io.rudiejd.vaadin.chartjs.options.AnimationEasing;
+import io.rudiejd.vaadin.chartjs.options.InteractionMode;
+import io.rudiejd.vaadin.chartjs.options.Position;
+import io.rudiejd.vaadin.chartjs.options.elements.Rectangle.RectangleEdge;
+import io.rudiejd.vaadin.chartjs.options.scale.Axis;
+import io.rudiejd.vaadin.chartjs.options.scale.LinearScale;
+import io.rudiejd.vaadin.chartjs.options.scale.LogarithmicScale;
 
 /**
  * @author michael@byteowls.com

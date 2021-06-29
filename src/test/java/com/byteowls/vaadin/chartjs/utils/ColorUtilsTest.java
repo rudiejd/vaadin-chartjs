@@ -3,6 +3,8 @@ package com.byteowls.vaadin.chartjs.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import io.rudiejd.vaadin.chartjs.utils.ColorUtils;
+
 import java.awt.*;
 
 import static org.junit.Assert.*;
