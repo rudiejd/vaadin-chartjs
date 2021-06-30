@@ -145,7 +145,7 @@ You will see that every fluent api method under `config.options()` has a counter
 
 The Vaadin-Chartjs is only a wrapper. So if you have any feature requests or found any bugs in the javascript lib please use Chart.js's issue tracker https://github.com/chartjs/Chart.js/issues
 
-In all other cases please create a issue at https://github.com/moberwasserlechner/vaadin-chartjs/issues or contribute to the project yourself. For contribution see the next section.
+In all other cases please create a issue at https://github.com/rudiejd/vaadin-chartjs/issues or contribute to the project yourself. For contribution see the next section.
 
 ## Contribute
 
@@ -153,7 +153,7 @@ In all other cases please create a issue at https://github.com/moberwasserlechne
 
 Please do not mix more than one issue in a feature branch. Each feature/bugfix should have its own branch and its own Pull Request (PR).
 
-1. Create a issue and describe what you want to do at [Issue Tracker](https://github.com/moberwasserlechner/vaadin-chartjs/issues)
+1. Create a issue and describe what you want to do at [Issue Tracker](https://github.com/rudiejd/vaadin-chartjs/issues)
 2. Create your feature branch (`git checkout -b feature/my-feature` or `git checkout -b bugfix/my-bugfix`)
 3. Test your changes to the best of your ability.
 4. Add a demo view to the demo application 
@@ -172,6 +172,3 @@ Try to change only parts your feature or bugfix requires.
 ## License
 
 MIT. Please see [LICENSE](https://github.com/rudiejd/vaadin-chartjs/blob/master/LICENSE).
-
-
-See the wiki page for how to request a quote. Donations are possible as well ;).
