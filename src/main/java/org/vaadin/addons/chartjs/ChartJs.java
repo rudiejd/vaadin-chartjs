@@ -25,18 +25,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.vaadin.addons.chartjs.config.ChartConfig;
 
 
-@JsModule("./hammer.min.js") 
-@JsModule("./Moment.js")
-@JsModule("./Chart.min.js") 
-@JsModule("./chartjs-plugin-zoom.min.js")
-@JsModule("./chartjs-plugin-annotation.min.js") 
-@JsModule("./chartjs-connector.js")
-@StyleSheet("./chartjs-connector.css")
+//@JsModule("./hammer.min.js") 
+//@JsModule("./Moment.js")
+//@JsModule("./Chart.min.js") 
+//@JsModule("./chartjs-plugin-zoom.min.js")
+//@JsModule("./chartjs-plugin-annotation.min.js") 
+//@JsModule("./chartjs-connector.js")
+//@StyleSheet("./chartjs-connector.css")
 @Tag("chart")
 public class ChartJs extends Component implements HasSize {
 
     /**
-     * indicates whether we've connected to object in javascript connector
+     * indicates whether we've connected to object in javascript
      */
     private boolean connected = false;
     
@@ -68,15 +68,11 @@ public class ChartJs extends Component implements HasSize {
 //    private List<ChartJs.DownloadListener> downloadListeners = new ArrayList<>();
 
     private ChartConfig chartConfig;
-    private ChartJsState state = new ChartJsState();
 
     /**
      * Construct a ChartJs. Be aware that you have to set a {@link ChartConfig} as well. Use {@link #configure(ChartConfig)} to do so.
      */
     public ChartJs() {
-        getElement().getClassList().add("v-chartjs");
-        getElement().getClassList().add("-v-chartjs");
-        getElement().getClassList().add("v-widget");
         setChartTagId("chartjs-" + this.hashCode() + "-" + System.nanoTime());
     }
 
@@ -87,7 +83,6 @@ public class ChartJs extends Component implements HasSize {
     public ChartJs(ChartConfig chartConfig) {
         this();
         configure(chartConfig);
-        initConnector();
     }
 
     /**
@@ -95,37 +90,31 @@ public class ChartJs extends Component implements HasSize {
      * @param chartConfig a chart configuration implementation
      */
     public void configure(ChartConfig chartConfig) {
-        if (chartConfig != null) {
-            this.chartConfig = chartConfig;
-            getState().configurationJson = chartConfig.buildJson();
-        }
-        UI ui = getUI().orElse(null);
-        if (ui != null) {
-            ui.getPage().executeJs("document.getElementById(\"" + getChartId() + "\").config = $0", getState().configurationJson);
+        this.chartConfig = chartConfig;
+        if (connected) {
+            UI ui = getUI().orElse(null);
+            if (ui != null) {
+                ui.getPage().executeJs("document.getElementById($0).chartjs.config = $1", getChartId(), chartConfig.buildJson()); 
 
+            }
         }
     }
 
     @Override
     protected void onAttach(AttachEvent e) {
         super.onAttach(e);
+        getUI().get().getPage().executeJs("let can = document.createElement('canvas'); "
+                + "can.setAttribute('id', $1);"
+                + "can.setAttribute('width', $2);"
+                + "can.setAttribute('height', $3);"
+                + "document.getElementById($0).appendChild(can)", 
+                getChartId(), getChartCanvasId(), getWidth(), getHeight()).then(
+                (r) -> getUI().get().getPage().executeJs("document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $2)", 
+                        getChartId(), getChartCanvasId(), chartConfig.buildJson())
+        );
+        connected = true;
     }
     
-    protected void onStateChange() {
-        UI ui = getUI().orElse(null);
-        // only update changes in client if we're connected
-        if (ui != null && connected) {
-            ui.getPage().executeJs("document.getElementById($0).onStateChange($1);", getChartId(), getState().buildJson());
-        }
-    }
-
-    private void initConnector() {
-        runBeforeClientResponse(ui -> 
-            ui.getPage().executeJs("window.com_byteowls_vaadin_chartjs_ChartJs($0)", getElement()).then((r) ->  {
-                connected = true;
-                onStateChange();
-            }));
-    }
 
     void runBeforeClientResponse(SerializableConsumer<UI> command) {
         getElement().getNode().runWhenAttached(ui -> ui
@@ -143,8 +132,13 @@ public class ChartJs extends Component implements HasSize {
      * Update the chart. Before calling this method, options must be changed and new data must be supplied.
      */
     public void update() {
-        if (chartConfig != null) {
-           onStateChange();
+        configure(chartConfig);
+        if (connected) {
+            UI ui = getUI().orElse(null);
+            if (ui != null) {
+                ui.getPage().executeJs("document.getElementById($0).chartjs.update()", getChartId());
+                
+            }
         }
     }
 
@@ -165,136 +159,10 @@ public class ChartJs extends Component implements HasSize {
      */
     @Deprecated
     public void refreshData() {
+        configure(chartConfig);
         update();
     }
 
-    /**
-     * @return True if the connector's logs defined messages to "console.log" else logging is disabled.
-     */
-    public boolean isJsLoggingEnabled() {
-        return getElement().getProperty("loggingEnabled").equals("true");
-    }
-
-    /**
-     * Enable or disables the connector's logging to "console.log"
-     * @param jsLoggingEnabled If true the connector script will log defined messages to "console.log". Defaults to false.
-     */
-    public void setJsLoggingEnabled(boolean jsLoggingEnabled) {
-        getState().loggingEnabled = jsLoggingEnabled;
-        onStateChange();
-    }
-
-    /**
-     * Adds a listener handling clicks on charts data points.
-     * @param listener the click listener.
-     */
-    public void addClickListener(ChartJs.DataPointClickListener listener) {
-        dataPointClickListeners.add(listener);
-        checkListenerState();
-    }
-
-    /**
-     * Remove a listener handling clicks on a chart's data points
-     * @param listener the click listener to remove
-     */
-    public void removeClickListener(ChartJs.DataPointClickListener listener) {
-        dataPointClickListeners.remove(listener);
-        checkListenerState();
-    }
-    
-    /**
-     * Add a listener handling clicks on a chart's legend
-     * @param listener the click listener 
-     */
-    public void addLegendClickListener(ChartJs.LegendClickListener listener) {
-    	legendClickListeners.add(listener);
-        checkListenerState();
-    }
-    
-    /**
-     * Remove a listener handling clicks on a chart's legend
-     * @param listener the listener to remove
-     */
-    public void removeLegendClickListener(ChartJs.LegendClickListener listener) {
-    	legendClickListeners.remove(listener);
-        checkListenerState();
-    }
-
-    private void checkListenerState() {
-        getState().dataPointClickListenerFound = !this.dataPointClickListeners.isEmpty();
-        getState().legendClickListenerFound = !this.legendClickListeners.isEmpty();
-        onStateChange();
-    }
-    
-    // called by client when a data point is clicked
-    @ClientCallable
-    private void onDataPointClick(int datasetIdx, int dataIdx) {
-        for (DataPointClickListener l : dataPointClickListeners) {
-            l.onDataPointClick(datasetIdx, dataIdx);
-        }
-    }
-
-    // called by client when a legend is clicked
-    @ClientCallable
-    private void onLegendClick(int datasetIdx, boolean visible, JsonArray visiblesJson) {
-        int[] visibles = new int[visiblesJson.length()];
-        for (int i = 0 ; i < visiblesJson.length(); i++)
-            visibles[i] = (int)visiblesJson.getNumber(i);
-
-        for (LegendClickListener l : legendClickListeners) {
-            l.onLegendClick(datasetIdx, visible, visibles);
-        }
-    }
-
-    protected ChartJsState getState() {
-        return state;
-    } 
-    
-    /**
-     * Show the download action in the menu.
-     *
-     * @param showDownloadAction
-     *            True, the download action in the menu should be displayed.
-     */
-    public void setShowDownloadAction(boolean showDownloadAction) {
-        getState().showDownloadAction = showDownloadAction;
-        onStateChange();
-    }
-
-    /**
-     * Set the label for the download action to the given text.
-     *
-     * @param downloadActionText
-     *            The new text for the download action.
-     */
-    public void setDownloadActionText(String downloadActionText) {
-        getState().downloadActionText = downloadActionText;
-        onStateChange();
-    }
-
-    /**
-     * Set the filename for the downloaded image.
-     *
-     * @param downloadActionFilename
-     *            The filename for the download including its extension,
-     *            defaults to chart.png.
-     */
-    public void setDownloadActionFilename(String downloadActionFilename) {
-        getState().downloadActionFilename = downloadActionFilename;
-        onStateChange();
-    }
-
-    /**
-     * If set to true, the downloaded image will receive a white background (instead of the default, which is
-     * transparent).
-     *
-     * @param downloadSetWhiteBackground
-     *            Set to true for downloading images with a white background.
-     */
-    public void setDownloadSetWhiteBackground(boolean downloadSetWhiteBackground) {
-        getState().downloadSetWhiteBackground = downloadSetWhiteBackground;
-        onStateChange();
-    }
 
     
     public ChartJs setChartTagId(String value) {
@@ -304,5 +172,9 @@ public class ChartJs extends Component implements HasSize {
     
     public String getChartId() {
         return chartIdProperty.get(this);
+    }
+    
+    public String getChartCanvasId() {
+        return chartIdProperty.get(this)+"-canv";
     }
 }
