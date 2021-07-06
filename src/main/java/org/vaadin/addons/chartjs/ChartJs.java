@@ -9,6 +9,8 @@ import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.function.SerializableConsumer;
 
@@ -23,15 +25,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.vaadin.addons.chartjs.config.ChartConfig;
 
-
-@JavaScript("hammer.min.js") 
-@JavaScript("Moment.js")
-@JavaScript("Chart.min.js") 
-@JavaScript("chartjs-plugin-zoom.min.js")
-@JavaScript("chartjs-plugin-annotation.min.js") 
-@JavaScript("chartjs-connector.js")
-@StyleSheet("chartjs-connector.css")
-@Tag("chart")
+@NpmPackage(value = "chartjs-web-components", version="2.8.0")
+@JsModule("chartjs-web-components/dist/base.js")
+@Tag("base-chart")
 public class ChartJs extends Component implements HasSize {
 
     /**
@@ -94,7 +90,10 @@ public class ChartJs extends Component implements HasSize {
      * @param chartConfig a chart configuration implementation
      */
     public void configure(ChartConfig chartConfig) {
-        if (chartConfig != null) {
+        this.getElement().setProperty("type", "bar");
+        this.getElement().setPropertyJson("options", chartConfig.buildJson().getObject("options"));
+        this.getElement().setPropertyJson("data", chartConfig.buildJson().getObject("data"));
+                if (chartConfig != null) {
             this.chartConfig = chartConfig;
             getState().configurationJson = chartConfig.buildJson();
         }
