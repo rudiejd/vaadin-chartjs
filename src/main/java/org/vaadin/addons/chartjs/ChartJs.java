@@ -23,15 +23,16 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.vaadin.addons.chartjs.config.ChartConfig;
+import org.vaadin.addons.chartjs.ChartJsUtils;
 
 
-//@JsModule("./hammer.min.js") 
-//@JsModule("./Moment.js")
-//@JsModule("./Chart.min.js") 
-//@JsModule("./chartjs-plugin-zoom.min.js")
-//@JsModule("./chartjs-plugin-annotation.min.js") 
-//@JsModule("./chartjs-connector.js")
-//@StyleSheet("./chartjs-connector.css")
+@JsModule("./hammer.min.js") 
+@JsModule("./Moment.js")
+@JsModule("./Chart.min.js") 
+@JsModule("./chartjs-plugin-zoom.min.js")
+@JsModule("./chartjs-plugin-annotation.min.js") 
+@JsModule("./chartjs-connector.js")
+@StyleSheet("./chartjs-connector.css")
 @Tag("chart")
 public class ChartJs extends Component implements HasSize {
 
@@ -44,28 +45,6 @@ public class ChartJs extends Component implements HasSize {
     
     private static final PropertyDescriptor<String, String> chartIdProperty =
             PropertyDescriptors.propertyWithDefault("id", "");
-    
-
-//    public enum ImageType {
-//        PNG
-//    }
-
-    public interface DataPointClickListener {
-        void onDataPointClick(int datasetIndex, int dataIndex);
-    }
-
-    public interface LegendClickListener {
-        void onLegendClick(int who, boolean isVisible, int[] visibles);
-    }
-
-//    public interface DownloadListener {
-//        void onDownload(byte[] imageData);
-//    }
-
-    private List<ChartJs.DataPointClickListener> dataPointClickListeners = new ArrayList<>();
-    private List<ChartJs.LegendClickListener> legendClickListeners = new ArrayList<>();
-    
-//    private List<ChartJs.DownloadListener> downloadListeners = new ArrayList<>();
 
     private ChartConfig chartConfig;
 
@@ -91,35 +70,24 @@ public class ChartJs extends Component implements HasSize {
      */
     public void configure(ChartConfig chartConfig) {
         this.chartConfig = chartConfig;
-        if (connected) {
-            UI ui = getUI().orElse(null);
-            if (ui != null) {
-                ui.getPage().executeJs("document.getElementById($0).chartjs.config = $1", getChartId(), chartConfig.buildJson()); 
-
-            }
-        }
+        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
+                "document.getElementById($0).chartjs.config = $1", getChartId(), chartConfig.buildJson());
     }
 
+    // todo: make use of pendingjavascriptresult to ensure we are connected
     @Override
     protected void onAttach(AttachEvent e) {
         super.onAttach(e);
-        getUI().get().getPage().executeJs("let can = document.createElement('canvas'); "
+        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
+                "let can = document.createElement('canvas'); "
                 + "can.setAttribute('id', $1);"
                 + "can.setAttribute('width', $2);"
                 + "can.setAttribute('height', $3);"
-                + "document.getElementById($0).appendChild(can)", 
-                getChartId(), getChartCanvasId(), getWidth(), getHeight()).then(
-                (r) -> getUI().get().getPage().executeJs("document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $2)", 
-                        getChartId(), getChartCanvasId(), chartConfig.buildJson())
-        );
+                + "document.getElementById($0).appendChild(can);"
+                + "document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $4)" , 
+                getChartId(), getChartCanvasId(), getWidth(), getHeight(), chartConfig.buildJson());
         connected = true;
     }
-    
-
-    void runBeforeClientResponse(SerializableConsumer<UI> command) {
-        getElement().getNode().runWhenAttached(ui -> ui
-                .beforeClientResponse(this, context -> command.accept(ui)));
-    } 
 
     /**
      * @return Chart configuration. Useful for update the data after chart drawing
@@ -133,23 +101,14 @@ public class ChartJs extends Component implements HasSize {
      */
     public void update() {
         configure(chartConfig);
-        if (connected) {
-            UI ui = getUI().orElse(null);
-            if (ui != null) {
-                ui.getPage().executeJs("document.getElementById($0).chartjs.update()", getChartId());
-                
-            }
-        }
+        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.update()", getChartId());
     }
 
     /**
      * Destroy the chart. This will call chartjs.destroy();
      */
     public void destroy() {
-        UI ui = getUI().orElse(null);
-        if (ui != null) {
-            ui.getPage().executeJs("document.getElementById($0).destroyChart()", getChartId());
-        }
+        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.destroyChart()", getChartId());
     }
 
     /**
@@ -159,7 +118,6 @@ public class ChartJs extends Component implements HasSize {
      */
     @Deprecated
     public void refreshData() {
-        configure(chartConfig);
         update();
     }
 
