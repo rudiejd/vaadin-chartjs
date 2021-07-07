@@ -15,6 +15,8 @@ This add-on was originally created by [moberwasserlechner](https://github.com/mo
     * I plan to re-implement and test this, but haven't yet  
 * Pan support
     * Plan to fix panning but haven't quite figured it out yet
+* Legend/Data point click listeners
+    * May reimplement in the future, but I want a working version of this add-on first 
 
 ### Current
 * Fluent api to configure the charts
@@ -29,8 +31,6 @@ This add-on was originally created by [moberwasserlechner](https://github.com/mo
   * Radar chart
   * Scatter line chart
 * Zoom support
-* Data point click listener
-* Legend click listener
 
 ### Chart.js
 
