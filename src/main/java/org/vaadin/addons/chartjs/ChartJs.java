@@ -31,8 +31,6 @@ import org.vaadin.addons.chartjs.ChartJsUtils;
 @JsModule("./Chart.min.js") 
 @JsModule("./chartjs-plugin-zoom.min.js")
 @JsModule("./chartjs-plugin-annotation.min.js") 
-@JsModule("./chartjs-connector.js")
-@StyleSheet("./chartjs-connector.css")
 @Tag("chart")
 public class ChartJs extends Component implements HasSize {
 
