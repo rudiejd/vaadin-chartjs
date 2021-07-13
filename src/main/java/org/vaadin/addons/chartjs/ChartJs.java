@@ -3,6 +3,7 @@ package org.vaadin.addons.chartjs;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.PropertyDescriptor;
 import com.vaadin.flow.component.PropertyDescriptors;
@@ -87,6 +88,12 @@ public class ChartJs extends Component implements HasSize {
                     getChartId(), getChartCanvasId(), chartConfig.buildJson());
         }
         connected = true;
+    }
+    
+    @Override
+    protected void onDetach(DetachEvent e) {
+        destroy();
+        connected = false;
     }
 
     /**
