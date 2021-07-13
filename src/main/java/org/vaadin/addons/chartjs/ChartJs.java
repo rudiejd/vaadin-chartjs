@@ -76,15 +76,17 @@ public class ChartJs extends Component implements HasSize {
     @Override
     protected void onAttach(AttachEvent e) {
         super.onAttach(e);
-        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
-                "let can = document.createElement('canvas'); "
-                + "can.setAttribute('id', $1);"
-                + "can.setAttribute('width', $2);"
-                + "can.setAttribute('height', $3);"
-                + "document.getElementById($0).appendChild(can);"
-                + "document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $4)" , 
-                getChartId(), getChartCanvasId(), getWidth(), getHeight(), chartConfig.buildJson());
-        connected = true;
+        if (!connected) {
+            ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
+                    "let can = document.createElement('canvas'); "
+                    + "can.setAttribute('id', $1);"
+                    + "can.setAttribute('width', '100%');"
+                    + "can.setAttribute('height', '100%');"
+                    + "document.getElementById($0).appendChild(can);"
+                    + "document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $2)" , 
+                    getChartId(), getChartCanvasId(), chartConfig.buildJson());
+            connected = true;
+        }
     }
 
     /**
