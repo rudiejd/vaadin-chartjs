@@ -85,7 +85,6 @@ public class ChartJs extends Component implements HasSize {
                     + "document.getElementById($0).appendChild(can);"
                     + "document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $2)" , 
                     getChartId(), getChartCanvasId(), chartConfig.buildJson());
-            
         }
         connected = true;
     }
