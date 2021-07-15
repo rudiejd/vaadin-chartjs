@@ -5,7 +5,7 @@
 
     <groupId>org.vaadin.addons.chartjs</groupId>
     <artifactId>chartjs</artifactId>
-    <version>0.1.32</version>
+    <version>0.1.33</version>
 	<name>ChartJs add-on for Vaadin 14+</name>
     <description>Integration of ChartJs for Vaadin platform</description>
 
