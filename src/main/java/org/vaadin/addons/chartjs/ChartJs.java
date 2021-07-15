@@ -12,6 +12,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.function.SerializableConsumer;
 
 import elemental.json.JsonArray;
@@ -52,6 +53,8 @@ public class ChartJs extends Component implements HasSize {
      */
     public ChartJs() {
         setChartTagId("chartjs-" + this.hashCode() + "-" + System.nanoTime());
+        getElement().appendChild(new Element("canvas")
+        		.setAttribute("id", getChartCanvasId()).setAttribute("width", "100%").setAttribute("height", "100%"));
     }
 
     /**
@@ -69,8 +72,10 @@ public class ChartJs extends Component implements HasSize {
      */
     public void configure(ChartConfig chartConfig) {
         this.chartConfig = chartConfig;
-        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
-                "document.getElementById($0).chartjs.config = $1", getChartId(), chartConfig.buildJson());
+        if (connected) {
+			ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
+					"document.getElementById($0).chartjs.config = $1", getChartId(), chartConfig.buildJson());
+        }
     }
 
     // todo: make use of pendingjavascriptresult to ensure we are connected
@@ -79,12 +84,7 @@ public class ChartJs extends Component implements HasSize {
         super.onAttach(e);
         if (!connected) {
             ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
-                    "let can = document.createElement('canvas'); "
-                    + "can.setAttribute('id', $1);"
-                    + "can.setAttribute('width', '100%');"
-                    + "can.setAttribute('height', '100%');"
-                    + "document.getElementById($0).appendChild(can);"
-                    + "document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $2)" , 
+                    "document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $2)" , 
                     getChartId(), getChartCanvasId(), chartConfig.buildJson());
         }
         connected = true;
@@ -108,14 +108,16 @@ public class ChartJs extends Component implements HasSize {
      */
     public void update() {
         configure(chartConfig);
-        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.update()", getChartId());
+        if (connected) {
+			ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.update()", getChartId());
+        }
     }
 
     /**
      * Destroy the chart. This will call chartjs.destroy();
      */
     public void destroy() {
-        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.destroyChart()", getChartId());
+        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.destroy()", getChartId());
     }
 
     /**
