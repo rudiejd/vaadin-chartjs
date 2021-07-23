@@ -370,9 +370,6 @@ public class Tooltips<T> extends And<T> implements JsonBuilder {
         JUtils.putNotNull(map, "displayColors", displayColors);
         JUtils.putNotNull(map, "borderColor", borderColor );
         JUtils.putNotNull(map, "borderWidth", borderWidth );
-        if (callbacks != null) {
-            JUtils.putNotNull(map, "callbacks", callbacks.buildJson());
-        }
         return map;
     }
 }

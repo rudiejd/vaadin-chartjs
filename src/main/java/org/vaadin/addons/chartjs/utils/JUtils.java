@@ -3,6 +3,8 @@ package org.vaadin.addons.chartjs.utils;
 import elemental.json.Json;
 import elemental.json.JsonArray;
 import elemental.json.JsonObject;
+import elemental.json.JsonString;
+import elemental.json.JsonType;
 import elemental.json.JsonValue;
 import elemental.json.impl.JreJsonNull;
 
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class JUtils {
     /**
@@ -205,6 +209,13 @@ public abstract class JUtils {
             }
         }
     }
+    
+    public static String formatJavascriptFunction(String name, String returnValue, String... args) {
+        String ret = String.format("function %s (%s) {"
+                + "return "+returnValue+"; }", name, Stream.of(args).collect(Collectors.joining(", ")));
+        return ret;
+        
+    }
 
     /**
      * Creates JSON entries for callback functions, ie. key is a property name of a callback function and value is
@@ -222,10 +233,11 @@ public abstract class JUtils {
     public static void putNotNullCallback(JsonObject obj, String key, String value, String... argumentNames) {
         if (value != null) {
             // add the property with the call back prefix
-            obj.put(CALLBACK_PREFIX + key, value);
+            obj.put(key, formatJavascriptFunction(key, value, argumentNames));
             JUtils.putNotNullStringListOrSingle(obj, CALLBACK_PREFIX + key + CALLBACK_ARGS_POSTFIX,
                     Arrays.asList(argumentNames));
         }
 
     }
+    
 }

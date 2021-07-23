@@ -59,6 +59,12 @@ public class DemoView extends VerticalLayout {
 						.position(Position.LEFT)
 						.text("Chart.js Combo Bar Line Chart")
 						.and()
+					.tooltips()
+					    .enabled(true)
+					    .callbacks()
+					        .label("tooltipItem.yLabel  + ' dang units'")
+                            .and()
+                        .and()
 				   .done();
 
 			List<String> labels = config.data().getLabels();
@@ -80,9 +86,11 @@ public class DemoView extends VerticalLayout {
 			}
 
 			ChartJs chart = new ChartJs(config);
+			chart.setHeight("800px");
+			chart.setWidth("1000px");
 			
 			add(chart);
-			add(myChart);
+			chart.update();
     }
 
 }

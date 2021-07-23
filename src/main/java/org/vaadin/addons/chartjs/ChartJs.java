@@ -25,6 +25,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.vaadin.addons.chartjs.config.ChartConfig;
+import org.vaadin.addons.chartjs.options.TooltipsCallbacks;
+import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.ChartJsUtils;
 
 
@@ -63,7 +65,19 @@ public class ChartJs extends Component implements HasSize {
      */
     public ChartJs(ChartConfig chartConfig) {
         this();
-        configure(chartConfig);
+        this.chartConfig = chartConfig;
+    }
+    
+    public void addFunction(String domPath, String functionStr) {
+           ChartJsUtils.safelyExecuteJs(getUI().orElse(UI.getCurrent()), 
+                   "document.getElementById('"+getChartId()+"').chartjs."+domPath+" = "+functionStr); 
+    }
+    
+    public void addAllFunctions() {
+        // tooltip callback functions
+        for (Map.Entry<String, String> entry : chartConfig.getOptions().tooltips().callbacks().asMap().entrySet()) {
+            addFunction("config.options.tooltips.callbacks."+entry.getKey(), JUtils.formatJavascriptFunction(entry.getKey(), entry.getValue(), TooltipsCallbacks.argumentMap().get(entry.getKey())));
+        }
     }
 
     /**
@@ -72,9 +86,10 @@ public class ChartJs extends Component implements HasSize {
      */
     public void configure(ChartConfig chartConfig) {
         this.chartConfig = chartConfig;
-        if (connected) {
-			ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
-					"document.getElementById($0).chartjs.config = $1", getChartId(), chartConfig.buildJson());
+        if (connected) { 
+            ChartJsUtils.safelyExecuteJs(getUI().orElse(UI.getCurrent()), 
+                "document.getElementById($0).chartjs.config = $1", getChartId(), chartConfig.buildJson());
+            addAllFunctions();
         }
     }
 
@@ -83,9 +98,10 @@ public class ChartJs extends Component implements HasSize {
     protected void onAttach(AttachEvent e) {
         super.onAttach(e);
         if (!connected) {
-            ChartJsUtils.safelyExecuteJs(getUI().orElse(null), 
+            ChartJsUtils.safelyExecuteJs(getUI().orElse(UI.getCurrent()), 
                     "document.getElementById($0).chartjs = new Chart(document.getElementById($1).getContext('2d'), $2)" , 
                     getChartId(), getChartCanvasId(), chartConfig.buildJson());
+            addAllFunctions();
         }
         connected = true;
     }
@@ -109,7 +125,7 @@ public class ChartJs extends Component implements HasSize {
     public void update() {
         configure(chartConfig);
         if (connected) {
-			ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.update()", getChartId());
+			ChartJsUtils.safelyExecuteJs(getUI().orElse(UI.getCurrent()), "document.getElementById($0).chartjs.update()", getChartId());
         }
     }
 
@@ -117,7 +133,7 @@ public class ChartJs extends Component implements HasSize {
      * Destroy the chart. This will call chartjs.destroy();
      */
     public void destroy() {
-        ChartJsUtils.safelyExecuteJs(getUI().orElse(null), "document.getElementById($0).chartjs.destroy()", getChartId());
+        ChartJsUtils.safelyExecuteJs(getUI().orElse(UI.getCurrent()), "document.getElementById($0).chartjs.destroy()", getChartId());
     }
 
     /**

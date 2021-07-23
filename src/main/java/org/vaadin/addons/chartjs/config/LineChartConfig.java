@@ -1,6 +1,7 @@
 package org.vaadin.addons.chartjs.config;
 
 import org.vaadin.addons.chartjs.data.Data;
+import org.vaadin.addons.chartjs.options.AbstractOptions;
 import org.vaadin.addons.chartjs.options.types.LineChartOptions;
 import org.vaadin.addons.chartjs.utils.JUtils;
 
@@ -46,5 +47,10 @@ public class LineChartConfig implements ChartConfig {
             JUtils.putNotNull(map, "options", options.buildJson());
         }
         return map;
+    }
+
+    @Override
+    public AbstractOptions<?> getOptions() {
+        return options;
     }
 }

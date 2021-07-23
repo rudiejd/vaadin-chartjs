@@ -1,5 +1,12 @@
 package org.vaadin.addons.chartjs.options;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.vaadin.addons.chartjs.ChartJsUtils;
 import org.vaadin.addons.chartjs.utils.And;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
@@ -186,6 +193,42 @@ public class TooltipsCallbacks<T> extends And<T> implements JsonBuilder {
     public TooltipsCallbacks<T> afterFooter(String afterFooter) {
         this.afterFooter = afterFooter;
         return this;
+    }
+    
+    public Map<String, String> asMap() {
+        HashMap<String, String> ret = new HashMap<String, String>();
+        ChartJsUtils.putNotNull(ret, "beforeTitle", beforeTitle);
+        ChartJsUtils.putNotNull(ret, "title", title);
+        ChartJsUtils.putNotNull(ret, "afterTitle", afterTitle);
+        ChartJsUtils.putNotNull(ret, "beforeBody", beforeBody);
+        ChartJsUtils.putNotNull(ret, "beforeLabel", beforeLabel);
+        ChartJsUtils.putNotNull(ret, "label", label); 
+        ChartJsUtils.putNotNull(ret, "labelColor", labelColor);
+        ChartJsUtils.putNotNull(ret, "labelTextColor", labelTextColor);
+        ChartJsUtils.putNotNull(ret, "afterLabel", afterLabel);
+        ChartJsUtils.putNotNull(ret, "afterBody", afterBody);
+        ChartJsUtils.putNotNull(ret, "beforeFooter", beforeFooter);
+        ChartJsUtils.putNotNull(ret, "footer", footer);
+        ChartJsUtils.putNotNull(ret, "afterFooter", afterFooter);
+        return ret;
+    }
+    
+    public static Map<String, String[]> argumentMap() {
+        HashMap<String, String[]> ret = new HashMap<String, String[]>();
+        ret.put("beforeTitle", new String[] {"tooltipItems", "data"});
+        ret.put("title", new String[] {"tooltipItems", "data"});
+        ret.put("afterTitle", new String[] {"tooltipItems", "data"});
+        ret.put("beforeBody", new String[] {"tooltipItems", "data"});
+        ret.put("beforeLabel", new String[] {"tooltipItems", "data"});
+        ret.put("label", new String[] {"tooltipItem", "data"}); 
+        ret.put("labelColor", new String[] {"tooltipItem", "chart"});
+        ret.put("labelTextColor", new String[] {"tooltipItem", "chart"});
+        ret.put("afterLabel", new String[] {"tooltipItem", "data"});
+        ret.put("afterBody", new String[] {"tooltipItems", "data"});
+        ret.put("beforeFooter", new String[] {"tooltipItems", "data"});
+        ret.put("footer", new String[] {"tooltipItems", "data"});
+        ret.put("afterFooter", new String[] {"tooltipItems", "data"});
+        return ret;
     }
 
     @Override
