@@ -13,6 +13,12 @@ on:
   workflow_dispatch:
 
 jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Google Java Format
+        uses: axel-op/googlejavaformat-action@v3.4.0
+        
   test:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
