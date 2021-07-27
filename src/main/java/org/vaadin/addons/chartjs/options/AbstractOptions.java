@@ -136,7 +136,6 @@ public abstract class AbstractOptions<T> implements JsonBuilder, Serializable {
         return elements;
     }
 
-
     /**
      * Step into the pan configuration.
      */

@@ -41,7 +41,6 @@ public class PanRange<T> extends And<Pan<T>> implements JsonBuilder, Serializabl
         return this;
     }
 
-
     @Override
     public JsonObject buildJson() {
         JsonObject obj = Json.createObject();

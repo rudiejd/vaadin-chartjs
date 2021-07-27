@@ -23,8 +23,8 @@ public class LineAnnotation<T> extends AbstractAnnotation<LineAnnotation<T>, T> 
     private Boolean vertical;
     private String scaleID;
     private Object value;
-//    private Double doubleValue;
-//    private String stringValue;
+    // private Double doubleValue;
+    // private String stringValue;
     private Object endValue;
     private String borderColor;
     private Integer borderWidth;
@@ -71,7 +71,6 @@ public class LineAnnotation<T> extends AbstractAnnotation<LineAnnotation<T>, T> 
         this.scaleID = "y-axis-0";
         return this;
     }
-
 
     /**
      * Double data value to draw the line at
@@ -122,8 +121,7 @@ public class LineAnnotation<T> extends AbstractAnnotation<LineAnnotation<T>, T> 
     }
 
     /**
-     * Line dash
-     * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash
+     * Line dash https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash
      */
     public LineAnnotation<T> borderDash(Integer... borderDash) {
         this.borderDash = Arrays.asList(borderDash);
@@ -131,8 +129,7 @@ public class LineAnnotation<T> extends AbstractAnnotation<LineAnnotation<T>, T> 
     }
 
     /**
-     * Line Dash Offset
-     * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset
+     * Line Dash Offset https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset
      */
     public LineAnnotation<T> borderDashOffset(int borderDashOffset) {
         this.borderDashOffset = borderDashOffset;
@@ -163,8 +160,8 @@ public class LineAnnotation<T> extends AbstractAnnotation<LineAnnotation<T>, T> 
         }
         JUtils.putNotNull(map, "scaleID", scaleID);
         JUtils.putNotNullObj(map, "value", value);
-//        JUtils.putNotNull(map, "value", stringValue);
-//        JUtils.putNotNull(map, "value", doubleValue);
+        // JUtils.putNotNull(map, "value", stringValue);
+        // JUtils.putNotNull(map, "value", doubleValue);
         JUtils.putNotNullObj(map, "endValue", endValue);
         JUtils.putNotNull(map, "borderColor", borderColor);
         JUtils.putNotNull(map, "borderWidth", borderWidth);

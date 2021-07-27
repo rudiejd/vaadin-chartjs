@@ -37,7 +37,6 @@ public abstract class AbstractScalableOptions<T extends AbstractScalableOptions<
         return annotation;
     }
 
-
     @Override
     public JsonObject buildJson() {
         JsonObject map = super.buildJson();

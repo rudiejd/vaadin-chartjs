@@ -66,7 +66,8 @@ public class LinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * Maximum number of ticks and gridlines to show. If not defined, it will limit to 11 ticks but will show all gridlines.
+     * Maximum number of ticks and gridlines to show. If not defined, it will limit to 11 ticks but will show all
+     * gridlines.
      */
     public LinearTicks<T> maxTicksLimit(int maxTicksLimit) {
         this.maxTicksLimit = maxTicksLimit;
@@ -74,8 +75,8 @@ public class LinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * User defined fixed step size for the scale. If set, the scale ticks will be enumerated by multiple of stepSize, having one tick per increment.
-     * If not set, the ticks are labeled automatically using the nice numbers algorithm.
+     * User defined fixed step size for the scale. If set, the scale ticks will be enumerated by multiple of stepSize,
+     * having one tick per increment. If not set, the ticks are labeled automatically using the nice numbers algorithm.
      */
     public LinearTicks<T> fixedStepSize(double fixedStepSize) {
         this.fixedStepSize = fixedStepSize;
@@ -83,7 +84,8 @@ public class LinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * if defined, it can be used along with the min and the max to give a custom number of steps. See the example below.
+     * if defined, it can be used along with the min and the max to give a custom number of steps. See the example
+     * below.
      */
     public LinearTicks<T> stepSize(double stepSize) {
         this.stepSize = stepSize;
@@ -91,7 +93,8 @@ public class LinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * User defined maximum number for the scale, overrides maximum value except for if it is lower than the maximum value.
+     * User defined maximum number for the scale, overrides maximum value except for if it is lower than the maximum
+     * value.
      */
     public LinearTicks<T> suggestedMax(int suggestedMax) {
         this.suggestedMax = (double) suggestedMax;
@@ -99,7 +102,8 @@ public class LinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * User defined maximum number for the scale, overrides maximum value except for if it is lower than the maximum value.
+     * User defined maximum number for the scale, overrides maximum value except for if it is lower than the maximum
+     * value.
      */
     public LinearTicks<T> suggestedMax(double suggestedMax) {
         this.suggestedMax = suggestedMax;
@@ -107,7 +111,8 @@ public class LinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * User defined minimum number for the scale, overrides minimum value except for if it is higher than the minimum value.
+     * User defined minimum number for the scale, overrides minimum value except for if it is higher than the minimum
+     * value.
      */
     public LinearTicks<T> suggestedMin(int suggestedMin) {
         this.suggestedMin = (double) suggestedMin;
@@ -115,7 +120,8 @@ public class LinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * User defined minimum number for the scale, overrides minimum value except for if it is higher than the minimum value.
+     * User defined minimum number for the scale, overrides minimum value except for if it is higher than the minimum
+     * value.
      */
     public LinearTicks<T> suggestedMin(double suggestedMin) {
         this.suggestedMin = suggestedMin;

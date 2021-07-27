@@ -26,8 +26,11 @@ public class Scales<P> extends And<P> implements JsonBuilder {
 
     /**
      *
-     * @param axis on which axis should the scale be placed
-     * @param scale a scale
+     * @param axis
+     *            on which axis should the scale be placed
+     * @param scale
+     *            a scale
+     * 
      * @return this for chaining.
      */
     public Scales<P> add(Axis axis, BaseScale<?> scale) {

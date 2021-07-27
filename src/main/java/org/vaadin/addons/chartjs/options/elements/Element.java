@@ -10,7 +10,7 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 public class Element<T> extends And<T> implements JsonBuilder, Serializable {
-    
+
     /**
      * 
      */
@@ -23,7 +23,7 @@ public class Element<T> extends And<T> implements JsonBuilder, Serializable {
     public Element(T parent) {
         super(parent);
     }
-    
+
     /**
      * Arcs are used in the polar area, doughnut and pie charts.
      */
@@ -33,7 +33,7 @@ public class Element<T> extends And<T> implements JsonBuilder, Serializable {
         }
         return arc;
     }
-    
+
     /**
      * Line elements are used to represent the line in a line chart.
      */
@@ -43,7 +43,7 @@ public class Element<T> extends And<T> implements JsonBuilder, Serializable {
         }
         return line;
     }
-    
+
     /**
      * Point elements are used to represent the points in a line chart or a bubble chart.
      */
@@ -53,9 +53,9 @@ public class Element<T> extends And<T> implements JsonBuilder, Serializable {
         }
         return point;
     }
-    
+
     /**
-     * Rectangle elements are used to represent the bars in a bar chart. 
+     * Rectangle elements are used to represent the bars in a bar chart.
      */
     public Rectangle<T> rectangle() {
         if (rectangle == null) {

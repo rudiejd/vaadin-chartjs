@@ -5,8 +5,8 @@ import org.vaadin.addons.chartjs.utils.JUtils;
 import elemental.json.JsonObject;
 
 /**
- * The radial linear scale is used specifically for the radar and polar are chart types.
- * It overlays the chart area, rather than being positioned on one of the edges.
+ * The radial linear scale is used specifically for the radar and polar are chart types. It overlays the chart area,
+ * rather than being positioned on one of the edges.
  *
  * @author michael@byteowls.com
  */
@@ -33,7 +33,8 @@ public class RadialLinearScale extends BaseScale<RadialLinearScale> {
     }
 
     /**
-     * Used to configure angled lines that radiate from the center of the chart to the point labels. Note that these options only apply if display is true.
+     * Used to configure angled lines that radiate from the center of the chart to the point labels. Note that these
+     * options only apply if display is true.
      */
     public RadialAngleLine<RadialLinearScale> angleLines() {
         if (this.angleLines == null) {

@@ -56,7 +56,8 @@ public class RadialLinearTicks<T> extends Ticks<T> implements JsonBuilder {
     }
 
     /**
-     * Maximum number of ticks and gridlines to show. If not defined, it will limit to 11 ticks but will show all gridlines. Default: 11
+     * Maximum number of ticks and gridlines to show. If not defined, it will limit to 11 ticks but will show all
+     * gridlines. Default: 11
      */
     public RadialLinearTicks<T> maxTicksLimit(int maxTicksLimit) {
         this.maxTicksLimit = maxTicksLimit;

@@ -25,7 +25,6 @@ public class Pan<T> extends And<T> implements JsonBuilder, Serializable {
     private PanRange<T> rangeMin;
     private PanRange<T> rangeMax;
 
-
     public Pan(T parent) {
         super(parent);
     }
@@ -57,8 +56,8 @@ public class Pan<T> extends And<T> implements JsonBuilder, Serializable {
     }
 
     /**
-     * Minimum range limits for pan.
-     * Range currently supports Double and String values. Usage depends on the datatypes in your scales.
+     * Minimum range limits for pan. Range currently supports Double and String values. Usage depends on the datatypes
+     * in your scales.
      */
     public PanRange<T> rangeMin() {
         if (rangeMin == null) {
@@ -68,8 +67,8 @@ public class Pan<T> extends And<T> implements JsonBuilder, Serializable {
     }
 
     /**
-     * Maximum range limits for pan.
-     * Range currently supports Double and String values. Usage depends on the datatypes in your scales.
+     * Maximum range limits for pan. Range currently supports Double and String values. Usage depends on the datatypes
+     * in your scales.
      */
     public PanRange<T> rangeMax() {
         if (rangeMax == null) {
@@ -87,7 +86,7 @@ public class Pan<T> extends And<T> implements JsonBuilder, Serializable {
         if (mode != null) {
             JUtils.putNotNull(map, "mode", mode.name().toLowerCase());
         }
-//        JUtils.putNotNull(map, "limits", limits);
+        // JUtils.putNotNull(map, "limits", limits);
         JUtils.putNotNull(map, "rangeMin", rangeMin);
         JUtils.putNotNull(map, "rangeMax", rangeMax);
         return map;

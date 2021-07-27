@@ -53,8 +53,8 @@ public abstract class DoubleDataset<T> implements Dataset<T, Double> {
         }
         return getThis();
     }
-    
-    /** 
+
+    /**
      * 
      * @see org.vaadin.addons.chartjs.data.Dataset#addLabeledData(java.lang.String, java.lang.Object)
      */
@@ -66,11 +66,11 @@ public abstract class DoubleDataset<T> implements Dataset<T, Double> {
             if (!labels.contains(label)) {
                 labels.add(label);
             }
-            
+
             if (dataMap == null) {
                 dataMap = new LinkedHashMap<>();
             }
-            
+
             Double value = dataMap.get(label);
             if (value == null) {
                 value = data;
@@ -79,7 +79,7 @@ public abstract class DoubleDataset<T> implements Dataset<T, Double> {
             }
             dataMap.put(label, value);
         }
-        
+
         return getThis();
     }
 

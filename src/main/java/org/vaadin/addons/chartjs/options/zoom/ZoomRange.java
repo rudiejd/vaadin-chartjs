@@ -41,7 +41,6 @@ public class ZoomRange<T> extends And<Zoom<T>> implements JsonBuilder, Serializa
         return this;
     }
 
-
     @Override
     public JsonObject buildJson() {
         JsonObject obj = Json.createObject();

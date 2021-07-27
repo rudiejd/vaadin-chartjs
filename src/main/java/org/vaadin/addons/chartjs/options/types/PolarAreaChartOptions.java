@@ -43,7 +43,6 @@ public class PolarAreaChartOptions extends AbstractOptions<PolarAreaChartOptions
         return pieAnimation;
     }
 
-
     @Override
 
     public JsonObject buildJson() {
@@ -53,6 +52,7 @@ public class PolarAreaChartOptions extends AbstractOptions<PolarAreaChartOptions
         JUtils.putNotNull(map, "animation", pieAnimation);
         return map;
     }
+
     @Override
     public PolarAreaChartOptions getThis() {
         return this;

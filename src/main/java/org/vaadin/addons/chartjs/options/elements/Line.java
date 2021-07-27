@@ -41,11 +41,9 @@ public class Line<T> extends And<Element<T>> implements JsonBuilder, Serializabl
     private Boolean fill;
     private FillMode fillMode;
 
-
     public Line(Element<T> parent) {
         super(parent);
     }
-
 
     /**
      * Default bezier curve tension. Set to 0 for no bezier curves. Default: 0.4
@@ -94,7 +92,6 @@ public class Line<T> extends And<Element<T>> implements JsonBuilder, Serializabl
         this.borderDash = Arrays.asList(borderDash);
         return this;
     }
-
 
     /**
      * Default line dash offset. Default: 0.0

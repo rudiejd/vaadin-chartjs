@@ -17,7 +17,8 @@ public class Hover<T> extends And<T> implements JsonBuilder, Serializable {
     private InteractionAxis axis;
     private Boolean intersect;
     private Integer animationDuration;
-    // TODO Callback onhover Called when any of the events fire. Called in the context of the chart and passed an array of active elements (bars, points, etc)
+    // TODO Callback onhover Called when any of the events fire. Called in the context of the chart and passed an array
+    // of active elements (bars, points, etc)
 
     public Hover(T parent) {
         super(parent);
@@ -32,7 +33,8 @@ public class Hover<T> extends And<T> implements JsonBuilder, Serializable {
     }
 
     /**
-     * Defines which directions are used in calculating distances. Defaults to {@link Axis#X} for index mode and {@link Axis#XY} in dataset and nearest modes.
+     * Defines which directions are used in calculating distances. Defaults to {@link Axis#X} for index mode and
+     * {@link Axis#XY} in dataset and nearest modes.
      */
     public Hover<T> axis(InteractionAxis axis) {
         this.axis = axis;

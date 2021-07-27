@@ -180,7 +180,6 @@ public class RadarDataset extends DoubleDataset<RadarDataset> {
         return this;
     }
 
-
     /**
      * The width of the point border in pixels
      */
@@ -237,9 +236,9 @@ public class RadarDataset extends DoubleDataset<RadarDataset> {
         return this;
     }
 
-
     /**
-     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and 'dash'.
+     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and
+     * 'dash'.
      */
     public RadarDataset pointStyle(PointStyle pointStyle) {
         this.pointStyle = pointStyle;
@@ -254,7 +253,7 @@ public class RadarDataset extends DoubleDataset<RadarDataset> {
         JUtils.putNotNull(map, "label", label);
 
         if (this.fillToPlus != null && this.fillToDatasetIndex != null) {
-            JUtils.putNotNull(map, "fill", (this.fillToPlus ? "+":"-") + this.fillToDatasetIndex);
+            JUtils.putNotNull(map, "fill", (this.fillToPlus ? "+" : "-") + this.fillToDatasetIndex);
         } else if (this.fillToPlus == null && this.fillToDatasetIndex != null) {
             JUtils.putNotNull(map, "fill", this.fillToDatasetIndex);
         } else if (this.fillMode != null) {

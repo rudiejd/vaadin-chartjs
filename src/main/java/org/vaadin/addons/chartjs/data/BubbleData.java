@@ -9,9 +9,10 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 /**
- * Data for the bubble chart is passed in the form of an object. 
+ * Data for the bubble chart is passed in the form of an object.
  * 
- * It is important to note that the radius property, r is not scaled by the chart. It is the raw radius in pixels of the bubble that is drawn on the canvas.
+ * It is important to note that the radius property, r is not scaled by the chart. It is the raw radius in pixels of the
+ * bubble that is drawn on the canvas.
  * 
  * @author michael@byteowls.com
  *

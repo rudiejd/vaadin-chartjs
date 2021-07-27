@@ -38,7 +38,8 @@ public abstract class BaseScale<B extends BaseScale<?>> implements JsonBuilder, 
     }
 
     /**
-     * If true, show the scale including gridlines, ticks, and labels. Overrides gridLines.display, scaleLabel.display, and ticks.display.
+     * If true, show the scale including gridlines, ticks, and labels. Overrides gridLines.display, scaleLabel.display,
+     * and ticks.display.
      */
     public BaseScale<B> display(boolean display) {
         this.display = display;
@@ -46,7 +47,9 @@ public abstract class BaseScale<B extends BaseScale<?>> implements JsonBuilder, 
     }
 
     /**
-     * The ID is used to link datasets and scale axes together. The properties `datasets.xAxisID` or `datasets.yAxisID` have to match the scale properties `scales.xAxes.id` or `scales.yAxes.id`. This is especially needed if multi-axes charts are used.
+     * The ID is used to link datasets and scale axes together. The properties `datasets.xAxisID` or `datasets.yAxisID`
+     * have to match the scale properties `scales.xAxes.id` or `scales.yAxes.id`. This is especially needed if
+     * multi-axes charts are used.
      */
     public BaseScale<B> id(String id) {
         this.id = id;
@@ -70,7 +73,8 @@ public abstract class BaseScale<B extends BaseScale<?>> implements JsonBuilder, 
     }
 
     /**
-     * Set this to ensure that the automatically sized bars are not sized thicker than this. Only works if barThickness is not set (automatic sizing is enabled).
+     * Set this to ensure that the automatically sized bars are not sized thicker than this. Only works if barThickness
+     * is not set (automatic sizing is enabled).
      */
     public BaseScale<B> maxBarThickness(int maxBarThickness) {
         this.maxBarThickness = maxBarThickness;
@@ -78,7 +82,8 @@ public abstract class BaseScale<B extends BaseScale<?>> implements JsonBuilder, 
     }
 
     /**
-     * Percent (0-1) of the available width (the space between the gridlines for small datasets) for each data-point to use for the bars.
+     * Percent (0-1) of the available width (the space between the gridlines for small datasets) for each data-point to
+     * use for the bars.
      */
     public BaseScale<B> categoryPercentage(double categoryPercentage) {
         this.categoryPercentage = categoryPercentage;
@@ -86,13 +91,13 @@ public abstract class BaseScale<B extends BaseScale<?>> implements JsonBuilder, 
     }
 
     /**
-     * Percent (0-1) of the available width each bar should be within the category percentage. 1.0 will take the whole category width and put the bars right next to each other.
+     * Percent (0-1) of the available width each bar should be within the category percentage. 1.0 will take the whole
+     * category width and put the bars right next to each other.
      */
     public BaseScale<B> barPercentage(double barPercentage) {
         this.barPercentage = barPercentage;
         return this;
     }
-
 
     /**
      * Position of the scale.
@@ -133,7 +138,6 @@ public abstract class BaseScale<B extends BaseScale<?>> implements JsonBuilder, 
     }
 
     public abstract B getThis();
-
 
     @Override
     public JsonObject buildJson() {

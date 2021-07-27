@@ -44,7 +44,6 @@ public class RadialAngleLine<T> extends And<T> implements JsonBuilder {
         return this;
     }
 
-
     public RadialAngleLine(T parent) {
         super(parent);
     }

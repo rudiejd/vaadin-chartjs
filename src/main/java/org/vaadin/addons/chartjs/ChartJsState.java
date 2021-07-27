@@ -12,7 +12,7 @@ import elemental.json.JsonObject;
 import elemental.json.JsonValue;
 import elemental.json.Json;
 
-public class ChartJsState implements JsonBuilder, Serializable{
+public class ChartJsState implements JsonBuilder, Serializable {
     public boolean loggingEnabled = false;
     public boolean dataPointClickListenerFound = false;
     public boolean legendClickListenerFound = false;
@@ -22,7 +22,7 @@ public class ChartJsState implements JsonBuilder, Serializable{
     public boolean downloadSetWhiteBackground = true;
     public Map<String, String> menuItems = new HashMap<String, String>();
     public JsonValue configurationJson = null;
-    
+
     @Override
     public JsonObject buildJson() {
         JsonObject map = Json.createObject();
@@ -34,10 +34,9 @@ public class ChartJsState implements JsonBuilder, Serializable{
         JUtils.putNotNull(map, "downloadActionFilename", downloadActionFilename);
         JUtils.putNotNull(map, "downloadSetWhiteBackground", downloadSetWhiteBackground);
         JUtils.putNotNull(map, "menuItems", menuItems);
-        if (configurationJson != null) JUtils.putNotNull(map, "configurationJson", configurationJson);
+        if (configurationJson != null)
+            JUtils.putNotNull(map, "configurationJson", configurationJson);
         return map;
     }
-    
-               
 
 }

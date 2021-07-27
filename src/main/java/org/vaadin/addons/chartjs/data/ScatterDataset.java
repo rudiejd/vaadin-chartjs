@@ -12,7 +12,7 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 /**
- * Scatter line charts can be created by changing the X axis to a linear axis. 
+ * Scatter line charts can be created by changing the X axis to a linear axis.
  * 
  * To use a scatter chart, data must be passed as objects containing X and Y properties.
  * 
@@ -70,8 +70,11 @@ public class ScatterDataset implements Dataset<ScatterDataset, ScatterData> {
 
     /**
      * A single data object to plot as bubbles
-     * @param x X Value
-     * @param y Y Value
+     * 
+     * @param x
+     *            X Value
+     * @param y
+     *            Y Value
      */
     public ScatterDataset addData(Double x, Double y) {
         if (data == null) {
@@ -94,7 +97,6 @@ public class ScatterDataset implements Dataset<ScatterDataset, ScatterData> {
         }
         return data;
     }
-
 
     @Override
     public ScatterDataset addLabeledData(String label, ScatterData data) {
@@ -240,7 +242,6 @@ public class ScatterDataset implements Dataset<ScatterDataset, ScatterData> {
         return this;
     }
 
-
     /**
      * The width of the point border in pixels
      */
@@ -297,9 +298,9 @@ public class ScatterDataset implements Dataset<ScatterDataset, ScatterData> {
         return this;
     }
 
-
     /**
-     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and 'dash'. 
+     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and
+     * 'dash'.
      */
     public ScatterDataset pointStyle(PointStyle pointStyle) {
         this.pointStyle = pointStyle;
@@ -329,8 +330,6 @@ public class ScatterDataset implements Dataset<ScatterDataset, ScatterData> {
         this.steppedLine = steppedLine;
         return this;
     }
-
-
 
     @Override
     public JsonObject buildJson() {

@@ -88,7 +88,7 @@ public class BarDataset extends DoubleDataset<BarDataset> {
     /**
      * The fill color of the bars.
      */
-    public BarDataset backgroundColor(String...  backgroundColor) {
+    public BarDataset backgroundColor(String... backgroundColor) {
         this.backgroundColor = Arrays.asList(backgroundColor);
         return this;
     }
@@ -128,7 +128,7 @@ public class BarDataset extends DoubleDataset<BarDataset> {
     /**
      * Bar background color when hovered
      */
-    public BarDataset hoverBackgroundColor(String...  hoverBackgroundColor) {
+    public BarDataset hoverBackgroundColor(String... hoverBackgroundColor) {
         this.hoverBackgroundColor = Arrays.asList(hoverBackgroundColor);
         return this;
     }
@@ -156,7 +156,6 @@ public class BarDataset extends DoubleDataset<BarDataset> {
         this.stack = stack;
         return this;
     }
-
 
     @Override
     public JsonObject buildJson() {

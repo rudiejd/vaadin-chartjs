@@ -66,7 +66,6 @@ public class RadialPointLabel<T> extends And<T> implements JsonBuilder {
         return this;
     }
 
-
     public RadialPointLabel(T parent) {
         super(parent);
     }

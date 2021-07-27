@@ -10,31 +10,31 @@ import org.vaadin.addons.chartjs.utils.Pair;
 /**
  * @author slatequarry
  */
-public abstract class TimeDoubleDataset<T> implements Dataset<T, Pair<LocalDateTime,Double>> {
+public abstract class TimeDoubleDataset<T> implements Dataset<T, Pair<LocalDateTime, Double>> {
 
-	private static final long serialVersionUID = -6974707185168615990L;
+    private static final long serialVersionUID = -6974707185168615990L;
 
-	private List<Pair<LocalDateTime,Double>> data;
+    private List<Pair<LocalDateTime, Double>> data;
 
     @SuppressWarnings("unchecked")
-	@Override
-    public T data(Pair<LocalDateTime,Double>... data) {
+    @Override
+    public T data(Pair<LocalDateTime, Double>... data) {
         this.data = Arrays.asList(data);
         return getThis();
     }
 
     @Override
-    public T dataAsList(List<Pair<LocalDateTime,Double>> data) {
+    public T dataAsList(List<Pair<LocalDateTime, Double>> data) {
         this.data = data;
         return getThis();
     }
 
     @Override
-    public List<Pair<LocalDateTime,Double>> getData() {
+    public List<Pair<LocalDateTime, Double>> getData() {
         return data;
     }
 
-    public T addData(Pair<LocalDateTime,Double> data) {
+    public T addData(Pair<LocalDateTime, Double> data) {
         if (this.data == null) {
             this.data = new ArrayList<>();
         }
@@ -43,9 +43,9 @@ public abstract class TimeDoubleDataset<T> implements Dataset<T, Pair<LocalDateT
     }
 
     public T addData(LocalDateTime time, Double value) {
-        addData(Pair.of(time,value));
+        addData(Pair.of(time, value));
         return getThis();
     }
-    
+
     protected abstract T getThis();
 }

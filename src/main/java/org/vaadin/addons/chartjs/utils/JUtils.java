@@ -60,7 +60,6 @@ public abstract class JUtils {
         }
     }
 
-
     public static void putNotNull(JsonObject obj, String key, JsonValue value) {
         if (value != null) {
             obj.put(key, value);
@@ -78,7 +77,7 @@ public abstract class JUtils {
             obj.put(key, value.toString());
         }
     }
-    
+
     public static void putNotNullObj(JsonObject obj, String key, Object value) {
         if (value != null) {
             if (value instanceof String) {
@@ -91,9 +90,9 @@ public abstract class JUtils {
                 obj.put(key, (JsonValue) value);
             } else if (value instanceof Integer) {
                 obj.put(key, (Integer) value);
-	        } else if (value instanceof LocalDateTime) {
-	            obj.put(key, (String) value.toString());
-	        }
+            } else if (value instanceof LocalDateTime) {
+                obj.put(key, (String) value.toString());
+            }
         }
     }
 
@@ -142,14 +141,15 @@ public abstract class JUtils {
             obj.put(key, arr);
         }
     }
-    
-    public static void putNotNullTimeDoublePairs(JsonObject obj, String key, List<Pair<LocalDateTime,Double>> listOfPairs) {
+
+    public static void putNotNullTimeDoublePairs(JsonObject obj, String key,
+            List<Pair<LocalDateTime, Double>> listOfPairs) {
         if (listOfPairs != null) {
             JsonArray arr = Json.createArray();
-            for (Pair<LocalDateTime,Double> n : listOfPairs) {
+            for (Pair<LocalDateTime, Double> n : listOfPairs) {
                 if (n != null) {
                     JsonObject map = Json.createObject();
-                    JUtils.putNotNull(map, "t",	n.getFirst());
+                    JUtils.putNotNull(map, "t", n.getFirst());
                     JUtils.putNotNull(map, "y", n.getSecond());
                     arr.set(arr.length(), map);
                 }
@@ -209,12 +209,12 @@ public abstract class JUtils {
             }
         }
     }
-    
+
     public static String formatJavascriptFunction(String name, String returnValue, String... args) {
-        String ret = String.format("function %s (%s) {"
-                + "return "+returnValue+"; }", name, Stream.of(args).collect(Collectors.joining(", ")));
+        String ret = String.format("function %s (%s) {" + "return " + returnValue + " }", name,
+                Stream.of(args).collect(Collectors.joining(", ")));
         return ret;
-        
+
     }
 
     /**
@@ -233,11 +233,11 @@ public abstract class JUtils {
     public static void putNotNullCallback(JsonObject obj, String key, String value, String... argumentNames) {
         if (value != null) {
             // add the property with the call back prefix
-            obj.put(key, formatJavascriptFunction(key, value, argumentNames));
+            obj.put(key, value);
             JUtils.putNotNullStringListOrSingle(obj, CALLBACK_PREFIX + key + CALLBACK_ARGS_POSTFIX,
                     Arrays.asList(argumentNames));
         }
 
     }
-    
+
 }

@@ -12,9 +12,10 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 /**
- * A bubble chart is used to display three dimensions of data at the same time. 
+ * A bubble chart is used to display three dimensions of data at the same time.
  * 
- * The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes. 
+ * The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical
+ * axes.
  * 
  * The third dimension is represented by the size of the individual bubbles.
  *
@@ -48,9 +49,13 @@ public class BubbleDataset implements Dataset<BubbleDataset, BubbleData> {
 
     /**
      * A single data object to plot as bubbles
-     * @param x X Value
-     * @param y Y Value
-     * @param r Radius of bubble. This is not scaled.
+     * 
+     * @param x
+     *            X Value
+     * @param y
+     *            Y Value
+     * @param r
+     *            Radius of bubble. This is not scaled.
      */
     public BubbleDataset addData(Double x, Double y, Double r) {
         if (data == null) {
@@ -129,7 +134,7 @@ public class BubbleDataset implements Dataset<BubbleDataset, BubbleData> {
     /**
      * The fill color of the bubbles.
      */
-    public BubbleDataset backgroundColor(String...  backgroundColor) {
+    public BubbleDataset backgroundColor(String... backgroundColor) {
         this.backgroundColor = Arrays.asList(backgroundColor);
         return this;
     }
@@ -153,7 +158,7 @@ public class BubbleDataset implements Dataset<BubbleDataset, BubbleData> {
     /**
      * The fill color of the bubbles when hovered.
      */
-    public BubbleDataset hoverBackgroundColor(String...  hoverBackgroundColor) {
+    public BubbleDataset hoverBackgroundColor(String... hoverBackgroundColor) {
         this.hoverBackgroundColor = Arrays.asList(hoverBackgroundColor);
         return this;
     }

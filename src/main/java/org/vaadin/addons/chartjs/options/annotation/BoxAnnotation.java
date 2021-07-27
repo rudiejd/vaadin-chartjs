@@ -74,7 +74,7 @@ public class BoxAnnotation<T> extends AbstractAnnotation<BoxAnnotation<T>, T> im
     }
 
     /**
-     *  Right edge of the box
+     * Right edge of the box
      */
     public BoxAnnotation<T> xMax(Double xMax) {
         this.xMax = xMax;
@@ -82,7 +82,7 @@ public class BoxAnnotation<T> extends AbstractAnnotation<BoxAnnotation<T>, T> im
     }
 
     /**
-     *  Right edge of the box
+     * Right edge of the box
      */
     public BoxAnnotation<T> xMax(String xMax) {
         this.xMax = xMax;
@@ -144,7 +144,6 @@ public class BoxAnnotation<T> extends AbstractAnnotation<BoxAnnotation<T>, T> im
         this.backgroundColor = backgroundColor;
         return this;
     }
-
 
     @Override
     public BoxAnnotation<T> getThis() {

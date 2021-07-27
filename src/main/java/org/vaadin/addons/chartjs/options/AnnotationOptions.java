@@ -19,7 +19,6 @@ import org.vaadin.addons.chartjs.utils.JsonBuilder;
  */
 public class AnnotationOptions<T> extends And<T> implements JsonBuilder {
 
-
     private static final long serialVersionUID = -4653427395957468095L;
 
     private DrawTime drawTime;
@@ -31,23 +30,22 @@ public class AnnotationOptions<T> extends And<T> implements JsonBuilder {
         super(parent);
     }
 
-
     /**
-     * Defines when the annotations are drawn.
-     * This allows positioning of the annotation relative to the other elements to the graph.
+     * Defines when the annotations are drawn. This allows positioning of the annotation relative to the other elements
+     * to the graph.
      */
     public AnnotationOptions<T> drawTime(DrawTime drawTime) {
         this.drawTime = drawTime;
         return this;
     }
 
-//    /**
-//     * Mouse events to enable on each annotation. Should be an array of one or more browser-supported mouse events
-//     */
-//    public AnnotationOptions<T> events(String... mouseEvents) {
-//        this.events = Arrays.asList(mouseEvents);
-//        return this;
-//    }
+    // /**
+    // * Mouse events to enable on each annotation. Should be an array of one or more browser-supported mouse events
+    // */
+    // public AnnotationOptions<T> events(String... mouseEvents) {
+    // this.events = Arrays.asList(mouseEvents);
+    // return this;
+    // }
 
     /**
      * Double-click speed in ms used to distinguish single-clicks from double-clicks whenever you need to capture both.

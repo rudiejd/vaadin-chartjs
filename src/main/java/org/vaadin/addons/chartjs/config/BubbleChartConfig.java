@@ -9,7 +9,7 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 /**
- * A bubble chart is used to display three dimensions of data at the same time. 
+ * A bubble chart is used to display three dimensions of data at the same time.
  *
  * @author michael@byteowls.com
  */
@@ -30,6 +30,7 @@ public class BubbleChartConfig implements ChartConfig {
 
     /**
      * Switch to horizonal bar chart
+     * 
      * @return
      */
     public BubbleChartConfig horizontal() {

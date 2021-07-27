@@ -19,7 +19,6 @@ public class LogarithmicTicks<T> extends Ticks<T> implements JsonBuilder {
         super(parent);
     }
 
-
     /**
      * User defined minimum number for the scale, overrides minimum value from data.
      */
@@ -35,7 +34,6 @@ public class LogarithmicTicks<T> extends Ticks<T> implements JsonBuilder {
         this.max = max;
         return this;
     }
-
 
     @Override
     public JsonObject buildJson() {

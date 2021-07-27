@@ -18,15 +18,20 @@ public interface Dataset<T, D> extends JsonBuilder, Serializable {
 
     /**
      * Add the data value with a label. This is useful if you dynamically build labels and the datasets.
-     * @param label the label the data belongs to
+     * 
+     * @param label
+     *            the label the data belongs to
      * @param data
+     * 
      * @return
+     * 
      * @see Data#extractLabelsFromDataset(boolean)
      */
     T addLabeledData(String label, D data);
 
     /**
      * Gets the datasets labels.
+     * 
      * @return a {@link List} of labels
      */
     List<String> getDataLabels();

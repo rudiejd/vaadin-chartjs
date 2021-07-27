@@ -57,7 +57,6 @@ public class Tooltips<T> extends And<T> implements JsonBuilder {
     private String borderColor;
     private Integer borderWidth;
 
-
     public Tooltips(T parent) {
         super(parent);
     }
@@ -79,7 +78,8 @@ public class Tooltips<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * Defines which directions are used in calculating distances. Defaults to {@link Axis#X} for index mode and {@link Axis#XY} in dataset and nearest modes.
+     * Defines which directions are used in calculating distances. Defaults to {@link Axis#X} for index mode and
+     * {@link Axis#XY} in dataset and nearest modes.
      */
     public Tooltips<T> axis(InteractionAxis axis) {
         this.axis = axis;
@@ -87,8 +87,8 @@ public class Tooltips<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * If true, the tooltip mode applies only when the mouse position intersects with an element else
-     * the mode will be applied at all times. Defaults to true.
+     * If true, the tooltip mode applies only when the mouse position intersects with an element else the mode will be
+     * applied at all times. Defaults to true.
      */
     public Tooltips<T> intersect(boolean intersect) {
         this.intersect = intersect;
@@ -264,7 +264,7 @@ public class Tooltips<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     *  Extra distance to move the end of the tooltip arrow away from the tooltip point. Default: 2
+     * Extra distance to move the end of the tooltip arrow away from the tooltip point. Default: 2
      */
     public Tooltips<T> caretPadding(int caretPadding) {
         this.caretPadding = caretPadding;
@@ -368,8 +368,8 @@ public class Tooltips<T> extends And<T> implements JsonBuilder {
         JUtils.putNotNull(map, "cornerRadius", cornerRadius);
         JUtils.putNotNull(map, "multiKeyBackground", multiKeyBackground);
         JUtils.putNotNull(map, "displayColors", displayColors);
-        JUtils.putNotNull(map, "borderColor", borderColor );
-        JUtils.putNotNull(map, "borderWidth", borderWidth );
+        JUtils.putNotNull(map, "borderColor", borderColor);
+        JUtils.putNotNull(map, "borderWidth", borderWidth);
         return map;
     }
 }

@@ -32,9 +32,8 @@ public class Point<T> extends And<Element<T>> implements JsonBuilder, Serializab
         super(parent);
     }
 
-
     /**
-     * Default point radius. Default: 3 
+     * Default point radius. Default: 3
      */
     public Point<T> radius(int radius) {
         this.radius = radius;
@@ -105,8 +104,6 @@ public class Point<T> extends And<Element<T>> implements JsonBuilder, Serializab
         this.hoverBorderWidth = hoverBorderWidth;
         return this;
     }
-
-
 
     @Override
     public JsonObject buildJson() {

@@ -13,7 +13,8 @@ import elemental.json.JsonObject;
 /**
  * For a pie chart, datasets need to contain an array of data points.
  *
- * The data points should be a number, Chart.js will total all of the numbers and calculate the relative proportion of each.
+ * The data points should be a number, Chart.js will total all of the numbers and calculate the relative proportion of
+ * each.
  *
  * You can also add an array of background colors.
  *
@@ -80,7 +81,7 @@ public class PieDataset extends DoubleDataset<PieDataset> {
     /**
      * The fill color of the arcs.
      */
-    public PieDataset backgroundColor(String...  backgroundColor) {
+    public PieDataset backgroundColor(String... backgroundColor) {
         this.backgroundColor = Arrays.asList(backgroundColor);
         return this;
     }
@@ -112,7 +113,7 @@ public class PieDataset extends DoubleDataset<PieDataset> {
     /**
      * Arc background color when hovered
      */
-    public PieDataset hoverBackgroundColor(String...  hoverBackgroundColor) {
+    public PieDataset hoverBackgroundColor(String... hoverBackgroundColor) {
         this.hoverBackgroundColor = Arrays.asList(hoverBackgroundColor);
         return this;
     }

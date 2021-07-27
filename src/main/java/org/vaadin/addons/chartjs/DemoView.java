@@ -24,73 +24,50 @@ import com.vaadin.flow.router.Route;
 @Route("")
 public class DemoView extends VerticalLayout {
     public DemoView() {
-           BarChartConfig conf = new BarChartConfig();
-           conf
-               .data()
-                   .labels("one", "two", "three")
-                   .addDataset(new BarDataset().type().label("Stuff").data(100.0, 200.0, 300.0))
-                   .and();
-           LinearScale l = new LinearScale();
-           l.ticks().beginAtZero(true);
-           conf.options()
-               .title()
-               .text("Test")
-               .and()
-               .scales()
-               .add(Axis.Y, l)
-               .and()
-           .done();
-           
-		    ChartJs myChart = new ChartJs(conf);
-			BarChartConfig config = new BarChartConfig();
-			config
-				.data()
-					.labels("January", "February", "March", "April", "May", "June", "July")
-					.addDataset(new BarDataset().type().label("Dataset 1").backgroundColor("rgba(151,187,205,0.5)").borderColor("white").borderWidth(2))
-					.addDataset(new LineDataset().type().label("Dataset 2").backgroundColor("rgba(151,187,205,0.5)").borderColor("white").borderWidth(2))
-					.addDataset(new BarDataset().type().label("Dataset 3").backgroundColor("rgba(220,220,220,0.5)"))
-					.and();
+        BarChartConfig conf = new BarChartConfig();
+        conf.data().labels("one", "two", "three")
+                .addDataset(new BarDataset().type().label("Stuff").data(100.0, 200.0, 300.0)).and();
+        LinearScale l = new LinearScale();
+        l.ticks().beginAtZero(true);
+        conf.options().title().text("Test").and().scales().add(Axis.Y, l).and().done();
 
-			config.
-				options()
-					.responsive(true)
-					.title()
-						.display(true)
-						.position(Position.LEFT)
-						.text("Chart.js Combo Bar Line Chart")
-						.and()
-					.tooltips()
-					    .enabled(true)
-					    .callbacks()
-					        .label("tooltipItem.yLabel  + ' dang units'")
-                            .and()
-                        .and()
-				   .done();
+        ChartJs myChart = new ChartJs(conf);
+        BarChartConfig config = new BarChartConfig();
+        config.data().labels("January", "February", "March", "April", "May", "June", "July")
+                .addDataset(new BarDataset().type().label("Dataset 1").backgroundColor("rgba(151,187,205,0.5)")
+                        .borderColor("white").borderWidth(2))
+                .addDataset(new LineDataset().type().label("Dataset 2").backgroundColor("rgba(151,187,205,0.5)")
+                        .borderColor("white").borderWidth(2))
+                .addDataset(new BarDataset().type().label("Dataset 3").backgroundColor("rgba(220,220,220,0.5)")).and();
 
-			List<String> labels = config.data().getLabels();
-			for (Dataset<?, ?> ds : config.data().getDatasets()) {
-				List<Double> data = new ArrayList<>();
-				for (int i = 0; i < labels.size(); i++) {
-					data.add((double) (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100));
-				}
+        config.options().responsive(true).title().display(true).position(Position.LEFT)
+                .text("Chart.js Combo Bar Line Chart").and().tooltips().enabled(true).callbacks()
+                .label("tooltipItem.yLabel  + ' dang units'").and().and().done();
 
-				if (ds instanceof BarDataset) {
-					BarDataset bds = (BarDataset) ds;
-					bds.dataAsList(data);    
-				}
+        List<String> labels = config.data().getLabels();
+        for (Dataset<?, ?> ds : config.data().getDatasets()) {
+            List<Double> data = new ArrayList<>();
+            for (int i = 0; i < labels.size(); i++) {
+                data.add((double) (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100));
+            }
 
-				if (ds instanceof LineDataset) {
-					LineDataset lds = (LineDataset) ds;
-					lds.dataAsList(data);    
-				}
-			}
+            if (ds instanceof BarDataset) {
+                BarDataset bds = (BarDataset) ds;
+                bds.dataAsList(data);
+            }
 
-			ChartJs chart = new ChartJs(config);
-			chart.setHeight("800px");
-			chart.setWidth("1000px");
-			
-			add(chart);
-			chart.update();
+            if (ds instanceof LineDataset) {
+                LineDataset lds = (LineDataset) ds;
+                lds.dataAsList(data);
+            }
+        }
+
+        ChartJs chart = new ChartJs(config);
+        chart.setHeight("800px");
+        chart.setWidth("1000px");
+
+        add(chart);
+        chart.update();
     }
 
 }

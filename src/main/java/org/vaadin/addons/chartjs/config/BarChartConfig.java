@@ -32,6 +32,7 @@ public class BarChartConfig implements ChartConfig {
 
     /**
      * Switch to horizonal bar chart
+     * 
      * @return
      */
     public BarChartConfig horizontal() {

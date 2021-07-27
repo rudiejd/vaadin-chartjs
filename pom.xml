@@ -5,7 +5,7 @@
 
     <groupId>org.vaadin.addons.chartjs</groupId>
     <artifactId>chartjs</artifactId>
-    <version>0.1.35</version>
+    <version>0.1.36</version>
 	<name>ChartJs add-on for Vaadin 14+</name>
     <description>Integration of ChartJs for Vaadin platform</description>
 
@@ -119,6 +119,11 @@
                     </archive>
                 </configuration>
             </plugin>
+		   <plugin>
+			<groupId>net.revelc.code.formatter</groupId>
+			<artifactId>formatter-maven-plugin</artifactId>
+			<version>2.16.0</version>
+		   </plugin>
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>

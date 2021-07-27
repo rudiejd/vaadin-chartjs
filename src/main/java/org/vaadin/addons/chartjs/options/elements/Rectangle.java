@@ -63,7 +63,6 @@ public class Rectangle<T> extends And<Element<T>> implements JsonBuilder, Serial
         return this;
     }
 
-
     @Override
     public JsonObject buildJson() {
         JsonObject map = Json.createObject();

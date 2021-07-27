@@ -10,26 +10,19 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
-    
-	private static final long serialVersionUID = -9154944512274347096L;
 
-	public enum Unit {
-        MILLISECOND,
-        SECOND,
-        MINUTE,
-        HOUR,
-        DAY,
-        WEEK,
-        MONTH,
-        QUARTER,
-        YEAR
+    private static final long serialVersionUID = -9154944512274347096L;
+
+    public enum Unit {
+        MILLISECOND, SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, YEAR
     }
-	
-	static String unitToString(Unit unit) {
-		if (unit==null) return null;
-		return unit.toString().toLowerCase();
-	}
-    
+
+    static String unitToString(Unit unit) {
+        if (unit == null)
+            return null;
+        return unit.toString().toLowerCase();
+    }
+
     private String format;
     private TimeDisplayFormats displayFormats;
     private Boolean isoWeekday;
@@ -44,7 +37,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
     public TimeScaleOptions(TimeScale parent) {
         super(parent);
     }
-    
+
     /**
      * E.g. 'MM/DD/YYYY HH:mm'
      */
@@ -52,17 +45,16 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.format = format;
         return this;
     }
-    
-    
+
     /**
-     * The following display formats are used to configure how different time units are formed into strings for the axis tick marks. 
+     * The following display formats are used to configure how different time units are formed into strings for the axis
+     * tick marks.
      */
     public TimeDisplayFormats displayFormats() {
         this.displayFormats = new TimeDisplayFormats(this);
         return this.displayFormats;
     }
-     
-    
+
     /**
      * If true and the unit is set to 'week', iso weekdays will be used.
      */
@@ -70,7 +62,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.isoWeekday = isoWeekday;
         return this;
     }
-    
+
     /**
      * If defined, this will override the data minimum
      */
@@ -78,7 +70,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.min = min;
         return this;
     }
-    
+
     /**
      * If defined, this will override the data maximum
      */
@@ -86,7 +78,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.max = max;
         return this;
     }
-    
+
     /**
      * If defined, dates will be rounded to the start of this unit.
      */
@@ -94,7 +86,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.round = round;
         return this;
     }
-    
+
     /**
      * The moment js format string to use for the tooltip.
      */
@@ -102,9 +94,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.tooltipFormat = tooltipFormat;
         return this;
     }
-    
-    
-    
+
     /**
      * If defined, will force the unit to be a certain type.
      */
@@ -112,7 +102,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.unit = unit;
         return this;
     }
-    
+
     /**
      * The number of units between grid lines.
      */
@@ -120,7 +110,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.stepSize = stepSize;
         return this;
     }
-    
+
     /**
      * The minimum display format to be used for a time unit.
      */
@@ -128,7 +118,7 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         this.minUnit = minUnit;
         return this;
     }
-    
+
     @Override
     public JsonObject buildJson() {
         JsonObject map = Json.createObject();
@@ -137,13 +127,12 @@ public class TimeScaleOptions extends And<TimeScale> implements JsonBuilder {
         JUtils.putNotNull(map, "isoWeekday", isoWeekday);
         JUtils.putNotNull(map, "min", min);
         JUtils.putNotNull(map, "max", max);
-        JUtils.putNotNull(map, "round", unitToString(round));    
+        JUtils.putNotNull(map, "round", unitToString(round));
         JUtils.putNotNull(map, "tooltipFormat", tooltipFormat);
-        JUtils.putNotNull(map, "unit", unitToString(unit));    
+        JUtils.putNotNull(map, "unit", unitToString(unit));
         JUtils.putNotNull(map, "stepSize", stepSize);
-        JUtils.putNotNull(map, "minUnit", unitToString(minUnit));    
+        JUtils.putNotNull(map, "minUnit", unitToString(minUnit));
         return map;
     }
-    
 
 }

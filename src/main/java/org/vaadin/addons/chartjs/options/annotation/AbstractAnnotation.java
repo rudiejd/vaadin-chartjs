@@ -29,8 +29,8 @@ public abstract class AbstractAnnotation<A, T> extends And<AnnotationOptions<T>>
     }
 
     /**
-     * Defines when the annotations are drawn.
-     * This allows positioning of the annotation relative to the other elements to the graph.
+     * Defines when the annotations are drawn. This allows positioning of the annotation relative to the other elements
+     * to the graph.
      */
     public A drawTime(DrawTime drawTime) {
         this.drawTime = drawTime;
@@ -49,6 +49,5 @@ public abstract class AbstractAnnotation<A, T> extends And<AnnotationOptions<T>>
         }
         return map;
     }
-
 
 }

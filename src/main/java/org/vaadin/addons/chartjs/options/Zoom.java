@@ -20,7 +20,7 @@ public class Zoom<T> extends And<T> implements JsonBuilder, Serializable {
     private boolean drag;
     private Double sensitivity;
     private XYMode mode;
-//    private ZoomLimit<T> limits;
+    // private ZoomLimit<T> limits;
     private ZoomRange<T> rangeMin;
     private ZoomRange<T> rangeMax;
 
@@ -58,8 +58,8 @@ public class Zoom<T> extends And<T> implements JsonBuilder, Serializable {
     }
 
     /**
-     * Minimum range limits for zoom.
-     * Range currently supports Double and String values. Usage depends on the datatypes in your scales.
+     * Minimum range limits for zoom. Range currently supports Double and String values. Usage depends on the datatypes
+     * in your scales.
      */
     public ZoomRange<T> rangeMin() {
         if (rangeMin == null) {
@@ -69,8 +69,8 @@ public class Zoom<T> extends And<T> implements JsonBuilder, Serializable {
     }
 
     /**
-     * Maximum range limits for zoom.
-     * Range currently supports Double and String values. Usage depends on the datatypes in your scales.
+     * Maximum range limits for zoom. Range currently supports Double and String values. Usage depends on the datatypes
+     * in your scales.
      */
     public ZoomRange<T> rangeMax() {
         if (rangeMax == null) {
@@ -88,7 +88,7 @@ public class Zoom<T> extends And<T> implements JsonBuilder, Serializable {
         if (mode != null) {
             JUtils.putNotNull(map, "mode", mode.name().toLowerCase());
         }
-//        JUtils.putNotNull(map, "limits", limits);
+        // JUtils.putNotNull(map, "limits", limits);
         JUtils.putNotNull(map, "rangeMin", rangeMin);
         JUtils.putNotNull(map, "rangeMax", rangeMax);
         return map;

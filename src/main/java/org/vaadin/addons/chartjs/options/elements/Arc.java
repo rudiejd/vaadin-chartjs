@@ -35,7 +35,7 @@ public class Arc<T> extends And<Element<T>> implements JsonBuilder, Serializable
     }
 
     /**
-     * Default stroke color for arcs. Default: #fff 
+     * Default stroke color for arcs. Default: #fff
      */
     public Arc<T> borderColor(String borderColor) {
         this.borderColor = borderColor;
@@ -49,7 +49,6 @@ public class Arc<T> extends And<Element<T>> implements JsonBuilder, Serializable
         this.borderWidth = borderWidth;
         return this;
     }
-
 
     @Override
     public JsonObject buildJson() {

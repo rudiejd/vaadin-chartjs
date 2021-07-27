@@ -121,9 +121,11 @@ public class LineDataset extends DoubleDataset<LineDataset> {
     /**
      * Algorithm used to interpolate a smooth curve from the discrete data points.
      *
-     * The 'default' algorithm uses a custom weighted cubic interpolation, which produces pleasant curves for all types of datasets.
+     * The 'default' algorithm uses a custom weighted cubic interpolation, which produces pleasant curves for all types
+     * of datasets.
      *
-     * The 'monotone' algorithm is more suited to y = f(x) datasets. It preserves monotonicity (or piecewise monotonicity) of the dataset being interpolated, and ensures local extremums (if any) stay at input data points.
+     * The 'monotone' algorithm is more suited to y = f(x) datasets. It preserves monotonicity (or piecewise
+     * monotonicity) of the dataset being interpolated, and ensures local extremums (if any) stay at input data points.
      */
     public LineDataset cubicInterpolationMode(CubicInterpolationMode cubicInterpolationMode) {
         this.cubicInterpolationMode = cubicInterpolationMode;
@@ -218,7 +220,6 @@ public class LineDataset extends DoubleDataset<LineDataset> {
         return this;
     }
 
-
     /**
      * The width of the point border in pixels
      */
@@ -275,9 +276,9 @@ public class LineDataset extends DoubleDataset<LineDataset> {
         return this;
     }
 
-
     /**
-     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and 'dash'.
+     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and
+     * 'dash'.
      */
     public LineDataset pointStyle(PointStyle pointStyle) {
         this.pointStyle = pointStyle;
@@ -323,7 +324,7 @@ public class LineDataset extends DoubleDataset<LineDataset> {
         JUtils.putNotNull(map, "yAxisID", yAxisID);
 
         if (this.fillToPlus != null && this.fillToDatasetIndex != null) {
-            JUtils.putNotNull(map, "fill", (this.fillToPlus ? "+":"-") + this.fillToDatasetIndex);
+            JUtils.putNotNull(map, "fill", (this.fillToPlus ? "+" : "-") + this.fillToDatasetIndex);
         } else if (this.fillToPlus == null && this.fillToDatasetIndex != null) {
             JUtils.putNotNull(map, "fill", this.fillToDatasetIndex);
         } else if (this.fillMode != null) {

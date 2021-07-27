@@ -3,61 +3,56 @@ package org.vaadin.addons.chartjs.utils;
 
 // Pair class
 public class Pair<U, V> {
-	
-	public final U first;   	// first field of a Pair
-	public final V second;  	// second field of a Pair
 
-	// Constructs a new Pair with specified values
-	private Pair(U first, V second)
-	{
-		this.first = first;
-		this.second = second;
-	}
+    public final U first; // first field of a Pair
+    public final V second; // second field of a Pair
 
-	public U getFirst() {
-		return first;
-	}
-	
-	public V getSecond() {
-		return second;
-	}
-	
-	@Override
-	// Checks specified object is "equal to" current object or not
-	public boolean equals(Object o)
-	{
-		if (this == o)
-			return true;
+    // Constructs a new Pair with specified values
+    private Pair(U first, V second) {
+        this.first = first;
+        this.second = second;
+    }
 
-		if (o == null || getClass() != o.getClass())
-			return false;
+    public U getFirst() {
+        return first;
+    }
 
-		Pair<?, ?> pair = (Pair<?, ?>) o;
+    public V getSecond() {
+        return second;
+    }
 
-		// call equals() method of the underlying objects
-		if (!first.equals(pair.first))
-			return false;
-		return second.equals(pair.second);
-	}
+    @Override
+    // Checks specified object is "equal to" current object or not
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
 
-	@Override
-	// Computes hash code for an object to support hash tables
-	public int hashCode()
-	{
-		// use hash codes of the underlying objects
-		return 31 * first.hashCode() + second.hashCode();
-	}
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-	@Override
-	public String toString()
-	{
-		return "(" + first + ", " + second + ")";
-	}
+        Pair<?, ?> pair = (Pair<?, ?>) o;
 
-	// Factory method for creating a Typed Pair instance
-	public static <U, V> Pair <U, V> of(U a, V b)
-	{
-		// calls private constructor
-		return new Pair<>(a, b);
-	}
+        // call equals() method of the underlying objects
+        if (!first.equals(pair.first))
+            return false;
+        return second.equals(pair.second);
+    }
+
+    @Override
+    // Computes hash code for an object to support hash tables
+    public int hashCode() {
+        // use hash codes of the underlying objects
+        return 31 * first.hashCode() + second.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "(" + first + ", " + second + ")";
+    }
+
+    // Factory method for creating a Typed Pair instance
+    public static <U, V> Pair<U, V> of(U a, V b) {
+        // calls private constructor
+        return new Pair<>(a, b);
+    }
 }

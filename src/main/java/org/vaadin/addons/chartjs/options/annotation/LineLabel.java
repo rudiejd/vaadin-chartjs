@@ -11,6 +11,7 @@ import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
 /**
  * Line annotation label
+ * 
  * @author m.oberwasserlechner@byteowls.com
  */
 public class LineLabel<T> extends And<LineAnnotation<T>> implements JsonBuilder, Serializable {
@@ -112,8 +113,8 @@ public class LineLabel<T> extends And<LineAnnotation<T>> implements JsonBuilder,
     }
 
     /**
-     * Adjustment along x-axis (left-right) of label relative to above number (can be negative)
-     * For horizontal lines positioned left or right, negative values move the label toward the edge, and positive values toward the center.
+     * Adjustment along x-axis (left-right) of label relative to above number (can be negative) For horizontal lines
+     * positioned left or right, negative values move the label toward the edge, and positive values toward the center.
      * Defaults to 0.
      */
     public LineLabel<T> xAdjust(int xAdjust) {
@@ -122,8 +123,8 @@ public class LineLabel<T> extends And<LineAnnotation<T>> implements JsonBuilder,
     }
 
     /**
-     * Adjustment along y-axis (top-bottom) of label relative to above number (can be negative).
-     * For vertical lines positioned top or bottom, negative values move the label toward the edge, and positive values toward the center.
+     * Adjustment along y-axis (top-bottom) of label relative to above number (can be negative). For vertical lines
+     * positioned top or bottom, negative values move the label toward the edge, and positive values toward the center.
      * Defaults to 0.
      */
     public LineLabel<T> yAdjust(int yAdjust) {
@@ -146,7 +147,6 @@ public class LineLabel<T> extends And<LineAnnotation<T>> implements JsonBuilder,
         this.content = content;
         return this;
     }
-
 
     @Override
     public JsonObject buildJson() {

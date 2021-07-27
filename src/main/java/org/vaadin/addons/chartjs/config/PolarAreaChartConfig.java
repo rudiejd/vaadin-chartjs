@@ -9,9 +9,11 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 /**
- * Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.
+ * Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs
+ * depending on the value.
  * 
- * This type of chart is often useful when we want to show a comparison data similar to a pie chart, but also show a scale of values for context.
+ * This type of chart is often useful when we want to show a comparison data similar to a pie chart, but also show a
+ * scale of values for context.
  *
  * @author michael@byteowls.com
  */

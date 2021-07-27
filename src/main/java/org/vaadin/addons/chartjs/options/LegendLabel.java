@@ -62,7 +62,6 @@ public class LegendLabel<T> extends And<Legend<T>> implements JsonBuilder, Seria
         return this;
     }
 
-
     /**
      * Padding between rows of colored boxes. Default: 10
      */
@@ -70,7 +69,6 @@ public class LegendLabel<T> extends And<Legend<T>> implements JsonBuilder, Seria
         this.padding = padding;
         return this;
     }
-
 
     public LegendLabel(Legend<T> parent) {
         super(parent);
@@ -88,6 +86,5 @@ public class LegendLabel<T> extends And<Legend<T>> implements JsonBuilder, Seria
         JUtils.putNotNull(map, "usePointStyle", usePointStyle);
         return map;
     }
-
 
 }

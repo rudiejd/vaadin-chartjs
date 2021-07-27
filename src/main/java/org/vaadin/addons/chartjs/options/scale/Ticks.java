@@ -35,8 +35,8 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * If true, automatically calculates how many labels that can be shown and hides labels accordingly.
-     * Turn it off to show all labels no matter what
+     * If true, automatically calculates how many labels that can be shown and hides labels accordingly. Turn it off to
+     * show all labels no matter what
      */
     public Ticks<T> autoSkip(boolean autoSkip) {
         this.autoSkip = autoSkip;
@@ -84,8 +84,8 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * Distance in pixels to offset the label from the centre point of the tick (in the y direction for the x axis, and the x direction for the y axis).
-     * Note: this can cause labels at the edges to be cropped by the edge of the canvas
+     * Distance in pixels to offset the label from the centre point of the tick (in the y direction for the x axis, and
+     * the x direction for the y axis). Note: this can cause labels at the edges to be cropped by the edge of the canvas
      */
     public Ticks<T> labelOffset(int labelOffset) {
         this.labelOffset = labelOffset;
@@ -93,7 +93,8 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * Maximum rotation for tick labels when rotating to condense labels. Note: Rotation doesn't occur until necessary. Note: Only applicable to horizontal scales.
+     * Maximum rotation for tick labels when rotating to condense labels. Note: Rotation doesn't occur until necessary.
+     * Note: Only applicable to horizontal scales.
      */
     public Ticks<T> maxRotation(int maxRotation) {
         this.maxRotation = maxRotation;
@@ -109,8 +110,8 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * Flips tick labels around axis, displaying the labels inside the chart instead of outside.
-     * Note: Only applicable to vertical scales.
+     * Flips tick labels around axis, displaying the labels inside the chart instead of outside. Note: Only applicable
+     * to vertical scales.
      */
     public Ticks<T> mirror(boolean mirror) {
         this.mirror = mirror;

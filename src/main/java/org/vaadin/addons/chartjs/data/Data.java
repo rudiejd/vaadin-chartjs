@@ -38,7 +38,9 @@ public class Data<T> extends And<T> implements JsonBuilder {
 
     /**
      * Add a dataset.
-     * @param dataset the dataset
+     * 
+     * @param dataset
+     *            the dataset
      */
     public Data<T> addDataset(Dataset<?, ?> dataset) {
         if (this.datasets == null) {
@@ -57,7 +59,10 @@ public class Data<T> extends And<T> implements JsonBuilder {
 
     /**
      * Gets the dataset at the given index.
-     * @param index the dataset index
+     * 
+     * @param index
+     *            the dataset index
+     * 
      * @return The dataset at the given index and null if the index does not exist.
      */
     public Dataset<?, ?> getDatasetAtIndex(int index) {
@@ -69,6 +74,7 @@ public class Data<T> extends And<T> implements JsonBuilder {
 
     /**
      * Gets the first dataset.
+     * 
      * @return The first dataset or null if there is none.
      */
     public Dataset<?, ?> getFirstDataset() {

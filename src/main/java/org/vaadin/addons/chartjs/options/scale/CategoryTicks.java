@@ -19,7 +19,6 @@ public class CategoryTicks<T> extends Ticks<T> implements JsonBuilder {
         super(parent);
     }
 
-
     /**
      * The minimum item to display. Must be a value in the data.labels array
      */
@@ -35,7 +34,6 @@ public class CategoryTicks<T> extends Ticks<T> implements JsonBuilder {
         this.max = max;
         return this;
     }
-
 
     @Override
     public JsonObject buildJson() {

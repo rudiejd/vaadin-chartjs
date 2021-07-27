@@ -194,7 +194,7 @@ public class TooltipsCallbacks<T> extends And<T> implements JsonBuilder {
         this.afterFooter = afterFooter;
         return this;
     }
-    
+
     public Map<String, String> asMap() {
         HashMap<String, String> ret = new HashMap<String, String>();
         ChartJsUtils.putNotNull(ret, "beforeTitle", beforeTitle);
@@ -202,7 +202,7 @@ public class TooltipsCallbacks<T> extends And<T> implements JsonBuilder {
         ChartJsUtils.putNotNull(ret, "afterTitle", afterTitle);
         ChartJsUtils.putNotNull(ret, "beforeBody", beforeBody);
         ChartJsUtils.putNotNull(ret, "beforeLabel", beforeLabel);
-        ChartJsUtils.putNotNull(ret, "label", label); 
+        ChartJsUtils.putNotNull(ret, "label", label);
         ChartJsUtils.putNotNull(ret, "labelColor", labelColor);
         ChartJsUtils.putNotNull(ret, "labelTextColor", labelTextColor);
         ChartJsUtils.putNotNull(ret, "afterLabel", afterLabel);
@@ -212,22 +212,22 @@ public class TooltipsCallbacks<T> extends And<T> implements JsonBuilder {
         ChartJsUtils.putNotNull(ret, "afterFooter", afterFooter);
         return ret;
     }
-    
+
     public static Map<String, String[]> argumentMap() {
         HashMap<String, String[]> ret = new HashMap<String, String[]>();
-        ret.put("beforeTitle", new String[] {"tooltipItems", "data"});
-        ret.put("title", new String[] {"tooltipItems", "data"});
-        ret.put("afterTitle", new String[] {"tooltipItems", "data"});
-        ret.put("beforeBody", new String[] {"tooltipItems", "data"});
-        ret.put("beforeLabel", new String[] {"tooltipItems", "data"});
-        ret.put("label", new String[] {"tooltipItem", "data"}); 
-        ret.put("labelColor", new String[] {"tooltipItem", "chart"});
-        ret.put("labelTextColor", new String[] {"tooltipItem", "chart"});
-        ret.put("afterLabel", new String[] {"tooltipItem", "data"});
-        ret.put("afterBody", new String[] {"tooltipItems", "data"});
-        ret.put("beforeFooter", new String[] {"tooltipItems", "data"});
-        ret.put("footer", new String[] {"tooltipItems", "data"});
-        ret.put("afterFooter", new String[] {"tooltipItems", "data"});
+        ret.put("beforeTitle", new String[] { "tooltipItems", "data" });
+        ret.put("title", new String[] { "tooltipItems", "data" });
+        ret.put("afterTitle", new String[] { "tooltipItems", "data" });
+        ret.put("beforeBody", new String[] { "tooltipItems", "data" });
+        ret.put("beforeLabel", new String[] { "tooltipItems", "data" });
+        ret.put("label", new String[] { "tooltipItem", "data" });
+        ret.put("labelColor", new String[] { "tooltipItem", "chart" });
+        ret.put("labelTextColor", new String[] { "tooltipItem", "chart" });
+        ret.put("afterLabel", new String[] { "tooltipItem", "data" });
+        ret.put("afterBody", new String[] { "tooltipItems", "data" });
+        ret.put("beforeFooter", new String[] { "tooltipItems", "data" });
+        ret.put("footer", new String[] { "tooltipItems", "data" });
+        ret.put("afterFooter", new String[] { "tooltipItems", "data" });
         return ret;
     }
 

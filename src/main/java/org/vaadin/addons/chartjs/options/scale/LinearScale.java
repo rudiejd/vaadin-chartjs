@@ -5,9 +5,9 @@ import org.vaadin.addons.chartjs.utils.JUtils;
 import elemental.json.JsonObject;
 
 /**
- * The linear scale is use to chart numerical data. It can be placed on either the x or y axis.
- * The scatter chart type automatically configures a line chart to use one of these scales for the x axis.
- * As the name suggests, linear interpolation is used to determine where a value lies on the axis.
+ * The linear scale is use to chart numerical data. It can be placed on either the x or y axis. The scatter chart type
+ * automatically configures a line chart to use one of these scales for the x axis. As the name suggests, linear
+ * interpolation is used to determine where a value lies on the axis.
  *
  * @author michael@byteowls.com
  */

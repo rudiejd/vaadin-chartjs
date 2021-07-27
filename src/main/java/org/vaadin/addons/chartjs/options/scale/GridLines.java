@@ -65,8 +65,8 @@ public class GridLines<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * If true, draw lines on the chart area inside the axis lines.
-     * This is useful when there are multiple axes and you need to control which grid lines are drawn
+     * If true, draw lines on the chart area inside the axis lines. This is useful when there are multiple axes and you
+     * need to control which grid lines are drawn
      */
     public GridLines<T> drawOnChartArea(boolean drawOnChartArea) {
         this.drawOnChartArea = drawOnChartArea;
@@ -106,15 +106,17 @@ public class GridLines<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * Length and spacing of dashes of the grid line for the first index (index 0). See [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash)
+     * Length and spacing of dashes of the grid line for the first index (index 0). See
+     * [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash)
      */
-    public  GridLines<T> zeroLineBorderDash(Integer... zeroLineBorderDash) {
+    public GridLines<T> zeroLineBorderDash(Integer... zeroLineBorderDash) {
         this.zeroLineBorderDash = Arrays.asList(zeroLineBorderDash);
         return this;
     }
 
     /**
-     * Offset for line dashes of the grid line for the first index (index 0). See [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset)
+     * Offset for line dashes of the grid line for the first index (index 0). See
+     * [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset)
      */
     public GridLines<T> zeroLineBorderDashOffset(double zeroLineBorderDashOffset) {
         this.zeroLineBorderDashOffset = zeroLineBorderDashOffset;
@@ -130,7 +132,8 @@ public class GridLines<T> extends And<T> implements JsonBuilder {
     }
 
     /**
-     * If true, radial lines are circular. If false, they are straight lines connecting the the different angle line locations. Default: false
+     * If true, radial lines are circular. If false, they are straight lines connecting the the different angle line
+     * locations. Default: false
      */
     public GridLines<T> circular(boolean circular) {
         this.circular = circular;

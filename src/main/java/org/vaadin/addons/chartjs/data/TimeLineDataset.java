@@ -123,9 +123,11 @@ public class TimeLineDataset extends TimeDoubleDataset<TimeLineDataset> {
     /**
      * Algorithm used to interpolate a smooth curve from the discrete data points.
      *
-     * The 'default' algorithm uses a custom weighted cubic interpolation, which produces pleasant curves for all types of datasets.
+     * The 'default' algorithm uses a custom weighted cubic interpolation, which produces pleasant curves for all types
+     * of datasets.
      *
-     * The 'monotone' algorithm is more suited to y = f(x) datasets. It preserves monotonicity (or piecewise monotonicity) of the dataset being interpolated, and ensures local extremums (if any) stay at input data points.
+     * The 'monotone' algorithm is more suited to y = f(x) datasets. It preserves monotonicity (or piecewise
+     * monotonicity) of the dataset being interpolated, and ensures local extremums (if any) stay at input data points.
      */
     public TimeLineDataset cubicInterpolationMode(CubicInterpolationMode cubicInterpolationMode) {
         this.cubicInterpolationMode = cubicInterpolationMode;
@@ -220,7 +222,6 @@ public class TimeLineDataset extends TimeDoubleDataset<TimeLineDataset> {
         return this;
     }
 
-
     /**
      * The width of the point border in pixels
      */
@@ -277,9 +278,9 @@ public class TimeLineDataset extends TimeDoubleDataset<TimeLineDataset> {
         return this;
     }
 
-
     /**
-     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and 'dash'.
+     * The style of point. Options are 'circle', 'triangle', 'rect', 'rectRot', 'cross', 'crossRot', 'star', 'line', and
+     * 'dash'.
      */
     public TimeLineDataset pointStyle(PointStyle pointStyle) {
         this.pointStyle = pointStyle;
@@ -325,7 +326,7 @@ public class TimeLineDataset extends TimeDoubleDataset<TimeLineDataset> {
         JUtils.putNotNull(map, "yAxisID", yAxisID);
 
         if (this.fillToPlus != null && this.fillToDatasetIndex != null) {
-            JUtils.putNotNull(map, "fill", (this.fillToPlus ? "+":"-") + this.fillToDatasetIndex);
+            JUtils.putNotNull(map, "fill", (this.fillToPlus ? "+" : "-") + this.fillToDatasetIndex);
         } else if (this.fillToPlus == null && this.fillToDatasetIndex != null) {
             JUtils.putNotNull(map, "fill", this.fillToDatasetIndex);
         } else if (this.fillMode != null) {
@@ -369,14 +370,14 @@ public class TimeLineDataset extends TimeDoubleDataset<TimeLineDataset> {
         return this;
     }
 
-	@Override
-	public TimeLineDataset addLabeledData(String label, Pair<LocalDateTime, Double> data) {
-		return this;
-	}
+    @Override
+    public TimeLineDataset addLabeledData(String label, Pair<LocalDateTime, Double> data) {
+        return this;
+    }
 
-	@Override
-	public List<String> getDataLabels() {
-		return null;
-	}
+    @Override
+    public List<String> getDataLabels() {
+        return null;
+    }
 
 }

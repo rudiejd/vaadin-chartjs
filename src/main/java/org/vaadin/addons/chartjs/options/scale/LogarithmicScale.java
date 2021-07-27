@@ -5,8 +5,8 @@ import org.vaadin.addons.chartjs.utils.JUtils;
 import elemental.json.JsonObject;
 
 /**
- * The logarithmic scale is use to chart numerical data. It can be placed on either the x or y axis.
- * As the name suggests, logarithmic interpolation is used to determine where a value lies on the axis.
+ * The logarithmic scale is use to chart numerical data. It can be placed on either the x or y axis. As the name
+ * suggests, logarithmic interpolation is used to determine where a value lies on the axis.
  *
  * @author michael@byteowls.com
  */
