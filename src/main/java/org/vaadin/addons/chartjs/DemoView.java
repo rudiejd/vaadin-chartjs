@@ -42,7 +42,7 @@ public class DemoView extends VerticalLayout {
 
         config.options().responsive(true).title().display(true).position(Position.LEFT)
                 .text("Chart.js Combo Bar Line Chart").and().tooltips().enabled(true).callbacks()
-                .label("tooltipItem.yLabel  + ' dang units'").and().and().done();
+                .label("tooltipItem.yLabel  + ' %").and().and().done();
 
         List<String> labels = config.data().getLabels();
         for (Dataset<?, ?> ds : config.data().getDatasets()) {
