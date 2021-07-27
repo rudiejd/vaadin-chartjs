@@ -211,10 +211,8 @@ public abstract class JUtils {
     }
 
     public static String formatJavascriptFunction(String name, String returnValue, String... args) {
-        String ret = String.format("function %s (%s) {" + "return " + returnValue + " }", name,
-                Stream.of(args).collect(Collectors.joining(", ")));
+        String ret = "function "+name+" (+"+Stream.of(args).collect(Collectors.joining(", "))+") {" + "return " + returnValue + " }";     
         return ret;
-
     }
 
     /**

@@ -2,8 +2,10 @@ package org.vaadin.addons.chartjs.test;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.vaadin.addons.chartjs.config.DonutChartConfig;
 import org.vaadin.addons.chartjs.config.LineChartConfig;
 import org.vaadin.addons.chartjs.data.LineDataset;
+import org.vaadin.addons.chartjs.data.PieDataset;
 import org.vaadin.addons.chartjs.options.AnimationEasing;
 import org.vaadin.addons.chartjs.options.InteractionMode;
 import org.vaadin.addons.chartjs.options.Position;
@@ -12,10 +14,12 @@ import org.vaadin.addons.chartjs.options.scale.Axis;
 import org.vaadin.addons.chartjs.options.scale.LinearScale;
 import org.vaadin.addons.chartjs.options.scale.LogarithmicScale;
 
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+
 import elemental.json.JsonValue;
 
 /**
- * @author michael@byteowls.com
+ * @author michael@byteowls.com 
  */
 public class ChartJsTest {
 
@@ -38,5 +42,5 @@ public class ChartJsTest {
         JsonValue jsonValue = config.buildJson();
         Assert.assertNotNull(jsonValue);
     }
-
+    
 }
