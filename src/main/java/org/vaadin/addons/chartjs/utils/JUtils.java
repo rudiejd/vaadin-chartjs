@@ -211,7 +211,7 @@ public abstract class JUtils {
     }
 
     public static String formatJavascriptFunction(String name, String returnValue, String... args) {
-        String ret = "function "+name+" (+"+Stream.of(args).collect(Collectors.joining(", "))+") {" + "return " + returnValue + " }";     
+        String ret = "function "+name+" ("+Stream.of(args).collect(Collectors.joining(", "))+") {" + "return " + returnValue + " }";     
         return ret;
     }
 
