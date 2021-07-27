@@ -13,12 +13,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Google Java Format
-        uses: axel-op/googlejavaformat-action@v3.4.0
+
         
   test:
     runs-on: ubuntu-latest
@@ -34,3 +29,11 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
+        
+  format:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Google Java Format
+        uses: axel-op/googlejavaformat-action@v3.4.0
