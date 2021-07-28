@@ -7,14 +7,12 @@ package org.vaadin.addons.chartjs.options.scale;
  */
 public class DefaultScale extends BaseScale<DefaultScale> {
 
-    private static final long serialVersionUID = -5902029885008495859L;
+  private static final long serialVersionUID = -5902029885008495859L;
 
-    public DefaultScale() {
-    }
+  public DefaultScale() {}
 
-    @Override
-    public DefaultScale getThis() {
-        return this;
-    }
-
+  @Override
+  public DefaultScale getThis() {
+    return this;
+  }
 }

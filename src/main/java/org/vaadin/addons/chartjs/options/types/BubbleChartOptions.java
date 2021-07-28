@@ -5,15 +5,14 @@ import org.vaadin.addons.chartjs.options.AbstractScalableOptions;
 
 public class BubbleChartOptions extends AbstractScalableOptions<BubbleChartOptions> {
 
-    private static final long serialVersionUID = -3318129378787232820L;
+  private static final long serialVersionUID = -3318129378787232820L;
 
-    public BubbleChartOptions(ChartConfig chartConfig) {
-        super(chartConfig);
-    }
+  public BubbleChartOptions(ChartConfig chartConfig) {
+    super(chartConfig);
+  }
 
-    @Override
-    public BubbleChartOptions getThis() {
-        return this;
-    }
-
+  @Override
+  public BubbleChartOptions getThis() {
+    return this;
+  }
 }
