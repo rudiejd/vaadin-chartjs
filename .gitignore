@@ -10,3 +10,4 @@ build/
 hs_err_pid*
 /classes/
 *.iml
+package*json

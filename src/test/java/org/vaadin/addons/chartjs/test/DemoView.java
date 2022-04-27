@@ -1,9 +1,11 @@
-package org.vaadin.addons.chartjs;
+package org.vaadin.addons.chartjs.test;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.vaadin.addons.chartjs.ChartJs;
 import org.vaadin.addons.chartjs.config.BarChartConfig;
 import org.vaadin.addons.chartjs.data.BarDataset;
 import org.vaadin.addons.chartjs.data.Dataset;
