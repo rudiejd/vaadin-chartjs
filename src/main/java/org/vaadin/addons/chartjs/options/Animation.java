@@ -7,7 +7,9 @@ import org.vaadin.addons.chartjs.utils.And;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class Animation<T> extends And<T> implements JsonBuilder, Serializable {
 
   private static final long serialVersionUID = 153634423791436905L;

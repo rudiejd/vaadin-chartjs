@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public interface Dataset<T, D> extends JsonBuilder, Serializable {
 
   T data(@SuppressWarnings("unchecked") D... data);

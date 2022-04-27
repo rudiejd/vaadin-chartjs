@@ -7,7 +7,9 @@ import org.vaadin.addons.chartjs.options.Position;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public abstract class BaseScale<B extends BaseScale<?>> implements JsonBuilder, Serializable {
 
   private static final long serialVersionUID = -2382244938070735956L;

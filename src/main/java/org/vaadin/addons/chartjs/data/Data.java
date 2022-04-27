@@ -9,7 +9,9 @@ import org.vaadin.addons.chartjs.utils.And;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class Data<T> extends And<T> implements JsonBuilder {
 
   private static final long serialVersionUID = 8683322928360358252L;
@@ -45,7 +47,9 @@ public class Data<T> extends And<T> implements JsonBuilder {
     return this;
   }
 
-  /** @return A {@link List} of datasets. */
+  /**
+   * @return A {@link List} of datasets.
+   */
   public List<Dataset<?, ?>> getDatasets() {
     return datasets;
   }

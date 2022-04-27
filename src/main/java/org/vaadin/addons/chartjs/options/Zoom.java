@@ -9,7 +9,9 @@ import org.vaadin.addons.chartjs.utils.And;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author m.oberwasserlechner@byteowls.com */
+/**
+ * @author m.oberwasserlechner@byteowls.com
+ */
 public class Zoom<T> extends And<T> implements JsonBuilder, Serializable {
 
   private boolean enabled = true;

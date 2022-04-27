@@ -116,7 +116,9 @@ public class ChartJs extends Component implements HasSize {
     connected = false;
   }
 
-  /** @return Chart configuration. Useful for update the data after chart drawing */
+  /**
+   * @return Chart configuration. Useful for update the data after chart drawing
+   */
   public ChartConfig getConfig() {
     return this.chartConfig;
   }

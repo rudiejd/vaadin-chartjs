@@ -13,7 +13,9 @@ import org.vaadin.addons.chartjs.options.scale.Axis;
 import org.vaadin.addons.chartjs.options.scale.LinearScale;
 import org.vaadin.addons.chartjs.options.scale.LogarithmicScale;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class ChartJsTest {
 
   @Test

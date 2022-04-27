@@ -7,7 +7,9 @@ import java.util.List;
 import org.vaadin.addons.chartjs.options.FillMode;
 import org.vaadin.addons.chartjs.utils.JUtils;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class RadarDataset extends DoubleDataset<RadarDataset> {
 
   private static final long serialVersionUID = -3708453908890787373L;

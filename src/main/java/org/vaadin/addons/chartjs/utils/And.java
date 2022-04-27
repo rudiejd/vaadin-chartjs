@@ -2,7 +2,9 @@ package org.vaadin.addons.chartjs.utils;
 
 import java.io.Serializable;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public abstract class And<T> implements Serializable {
 
   private static final long serialVersionUID = -4267668163111396815L;

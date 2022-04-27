@@ -8,7 +8,9 @@ import org.vaadin.addons.chartjs.utils.And;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class Scales<P> extends And<P> implements JsonBuilder {
 
   private static final long serialVersionUID = -187367367922131753L;

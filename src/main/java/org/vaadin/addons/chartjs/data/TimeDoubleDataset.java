@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.vaadin.addons.chartjs.utils.Pair;
 
-/** @author slatequarry */
+/**
+ * @author slatequarry
+ */
 public abstract class TimeDoubleDataset<T> implements Dataset<T, Pair<LocalDateTime, Double>> {
 
   private static final long serialVersionUID = -6974707185168615990L;

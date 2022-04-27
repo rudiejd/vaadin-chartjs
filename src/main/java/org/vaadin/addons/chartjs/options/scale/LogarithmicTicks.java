@@ -4,7 +4,9 @@ import elemental.json.JsonObject;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class LogarithmicTicks<T> extends Ticks<T> implements JsonBuilder {
 
   private static final long serialVersionUID = 3668600985274134089L;

@@ -7,7 +7,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.vaadin.addons.chartjs.utils.ColorUtils;
 
-/** @author michael@team-conductor.com */
+/**
+ * @author michael@team-conductor.com
+ */
 public class ColorUtilsTest {
 
   @Test

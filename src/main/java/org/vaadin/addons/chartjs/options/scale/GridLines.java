@@ -8,7 +8,9 @@ import org.vaadin.addons.chartjs.utils.And;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class GridLines<T> extends And<T> implements JsonBuilder {
 
   private static final long serialVersionUID = 8138642242241971120L;

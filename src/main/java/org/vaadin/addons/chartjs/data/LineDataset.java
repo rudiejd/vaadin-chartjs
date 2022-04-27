@@ -7,7 +7,9 @@ import java.util.List;
 import org.vaadin.addons.chartjs.options.FillMode;
 import org.vaadin.addons.chartjs.utils.JUtils;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class LineDataset extends DoubleDataset<LineDataset> {
 
   private static final long serialVersionUID = -2084714266214798266L;

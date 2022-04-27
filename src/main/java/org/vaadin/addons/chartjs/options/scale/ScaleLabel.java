@@ -6,7 +6,9 @@ import org.vaadin.addons.chartjs.utils.And;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class ScaleLabel<T extends BaseScale<?>> extends And<T> implements JsonBuilder {
 
   private static final long serialVersionUID = 8461399369816928176L;

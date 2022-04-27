@@ -8,7 +8,9 @@ import java.util.List;
 import org.vaadin.addons.chartjs.utils.ColorUtils;
 import org.vaadin.addons.chartjs.utils.JUtils;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class BarDataset extends DoubleDataset<BarDataset> {
 
   private static final long serialVersionUID = -5049884704390777087L;

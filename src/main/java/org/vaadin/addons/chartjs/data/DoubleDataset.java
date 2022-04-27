@@ -6,7 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public abstract class DoubleDataset<T> implements Dataset<T, Double> {
 
   private static final long serialVersionUID = -1161268515260316334L;

@@ -9,7 +9,9 @@ import org.vaadin.addons.chartjs.options.FillMode;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.Pair;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class TimeLineDataset extends TimeDoubleDataset<TimeLineDataset> {
 
   private static final long serialVersionUID = -2084714266214798266L;

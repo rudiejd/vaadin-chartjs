@@ -4,7 +4,9 @@ import elemental.json.JsonObject;
 import org.vaadin.addons.chartjs.utils.JUtils;
 import org.vaadin.addons.chartjs.utils.JsonBuilder;
 
-/** @author michael@byteowls.com */
+/**
+ * @author michael@byteowls.com
+ */
 public class RadialLinearTicks<T> extends Ticks<T> implements JsonBuilder {
 
   private static final long serialVersionUID = -2707404179907977841L;
