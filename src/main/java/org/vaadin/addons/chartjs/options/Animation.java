@@ -20,6 +20,7 @@ public class Animation<T> extends And<T> implements JsonBuilder, Serializable {
 
   private Integer duration;
   private AnimationEasing easing;
+
   // TODO callback functions
   // http://www.chartjs.org/docs/#chart-configuration-animation-configuration
   // onProgress Callback called on each step of an animation. Passed a single argument, an object,

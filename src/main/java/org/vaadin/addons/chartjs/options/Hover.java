@@ -15,6 +15,7 @@ public class Hover<T> extends And<T> implements JsonBuilder, Serializable {
   private InteractionAxis axis;
   private Boolean intersect;
   private Integer animationDuration;
+
   // TODO Callback onhover Called when any of the events fire. Called in the context of the chart
   // and passed an array
   // of active elements (bars, points, etc)
