@@ -16,6 +16,7 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
   private static final long serialVersionUID = -4740687096401461147L;
 
   private Boolean autoSkip;
+  private Boolean beginAtZero;
   private Boolean display;
   private String fontColor;
   private String fontFamily;
@@ -40,6 +41,12 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
   public Ticks<T> autoSkip(boolean autoSkip) {
     this.autoSkip = autoSkip;
     return this;
+  }
+
+  /** If true, scale starts at 0. */
+  public Ticks<T> beginAtZero(boolean beginAtZero) {
+      this.beginAtZero = beginAtZero;
+      return this;
   }
 
   /** If true, show the ticks. */
@@ -155,6 +162,7 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
     JsonObject map = Json.createObject();
     JUtils.putNotNull(map, "display", display);
     JUtils.putNotNull(map, "autoSkip", autoSkip);
+    JUtils.putNotNull(map, "beginAtZero", beginAtZero);
     JUtils.putNotNull(map, "fontColor", fontColor);
     JUtils.putNotNull(map, "fontFamily", fontFamily);
     JUtils.putNotNull(map, "fontSize", fontSize);
