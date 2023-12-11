@@ -45,8 +45,8 @@ public class Ticks<T> extends And<T> implements JsonBuilder {
 
   /** If true, scale starts at 0. */
   public Ticks<T> beginAtZero(boolean beginAtZero) {
-      this.beginAtZero = beginAtZero;
-      return this;
+    this.beginAtZero = beginAtZero;
+    return this;
   }
 
   /** If true, show the ticks. */
