@@ -1,22 +1,29 @@
 # Vaadin 14 Chart.js
 Vaadin 14 addon for the Chart.js charting library. https://github.com/chartjs/Chart.js
 
+# Archival Notice
+
+I no longer work on Vaadin as part of my work or hobby projects. The company for whom I was interning when I worked on Vaadin, JumpMind, has an actively maintained fork of this repository.
+
+All future pull requests should be submitted on the [JumpMind fork](https://github.com/jumpmindinc/symmetric-vaadin-chartjs) of this repository.
+
+
 ## Notice
 
 This add-on was originally created by [moberwasserlechner](https://github.com/moberwasserlechner/), but the repository is now archived. I reworked it to work with Vaadin 14 because I had to upgrade an existing Vaadin 8 project using this add-on to Vaadin 14. This is probably not the most efficient implementation (I currently send the state to the client every time it is changed), and I am open to pull requests. I have also deprecated a few features.
 
 ## Features
 ### Deprecated
-* Menu API 
+* Menu API
     * can be replaced by Vaadin 14 Menu component(s).
-* Download image of chart 
+* Download image of chart
     * Most modern browsers allow you to download a canvas
 * Annotations
-    * I plan to re-implement and test this, but haven't yet  
+    * I plan to re-implement and test this, but haven't yet
 * Pan support
     * Plan to fix panning but haven't quite figured it out yet
 * Legend/Data point click listeners
-    * May reimplement in the future, but I want a working version of this add-on first 
+    * May reimplement in the future, but I want a working version of this add-on first
 
 ### Current
 * Fluent api to configure the charts
@@ -61,7 +68,7 @@ dependencies {
   compile ("org.vaadin.addons.chartjs:vaadin-chartjs:use.latest.version")
 }
 ```
-    
+
 ## Usage
 
 The basic usage is always the same. You need to create a new ChartJs() and configure it with a chart type specific config.
@@ -114,26 +121,26 @@ for (Dataset<?, ?> ds : config.data().getDatasets()) {
 
     if (ds instanceof BarDataset) {
         BarDataset bds = (BarDataset) ds;
-        bds.dataAsList(data);    
+        bds.dataAsList(data);
     }
 
     if (ds instanceof LineDataset) {
         LineDataset lds = (LineDataset) ds;
-        lds.dataAsList(data);    
+        lds.dataAsList(data);
     }
 }
 
 ChartJs chart = new ChartJs(config);
 chart.setJsLoggingEnabled(true);
 
-return chart; 
+return chart;
 ```
 
 ### Chart Options
 
 Please have a look at the great documentation at ChartJs. (http://www.chartjs.org/docs)
 
-You will see that every fluent api method under `config.options()` has a counterpart in the javascript json config.  
+You will see that every fluent api method under `config.options()` has a counterpart in the javascript json config.
 
 ## Prerequisite
 
@@ -156,7 +163,7 @@ Please do not mix more than one issue in a feature branch. Each feature/bugfix s
 1. Create a issue and describe what you want to do at [Issue Tracker](https://github.com/rudiejd/vaadin-chartjs/issues)
 2. Create your feature branch (`git checkout -b feature/my-feature` or `git checkout -b bugfix/my-bugfix`)
 3. Test your changes to the best of your ability.
-4. Add a demo view to the demo application 
+4. Add a demo view to the demo application
 5. Commit your changes (`git commit -m 'Describe feature or bug'`)
 6. Push to the branch (`git push origin feature/my-feature`)
 7. Create a Github Pull Request
