@@ -1,11 +1,12 @@
-# Vaadin 14 Chart.js
-Vaadin 14 addon for the Chart.js charting library. https://github.com/chartjs/Chart.js
-
-# Archival Notice
+# ARCHIVAL NOTICE
 
 I no longer work on Vaadin as part of my work or hobby projects. The company for whom I was interning when I worked on Vaadin, JumpMind, has an actively maintained fork of this repository.
 
-All future pull requests should be submitted on the [JumpMind fork](https://github.com/jumpmindinc/symmetric-vaadin-chartjs) of this repository.
+If you're looking for a current, actively maintained ChartJS adapter for Vaadin, you should check out the [JumpMind fork](https://github.com/jumpmindinc/symmetric-vaadin-chartjs) of this repository.
+
+
+# Vaadin 14 Chart.js
+Vaadin 14 addon for the Chart.js charting library. https://github.com/chartjs/Chart.js
 
 
 ## Notice
